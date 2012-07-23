@@ -1,0 +1,17 @@
+<html>
+    <head>
+        <script type="text/javascript" src="http://a.tbcdn.cn/??s/yui/3.5.1/build/yui/yui-min.js"></script>
+    </head>
+    <body>
+        <button id="J_Speak">click me</button>
+        <script type="text/javascript">
+            YUI().use('node',function(Y){
+                function speak(){
+                    alert("Hello World!");
+                }
+
+                Y.one('#J_Speak').on('click',speak);
+            });
+        </script>
+    </body>
+</html>
