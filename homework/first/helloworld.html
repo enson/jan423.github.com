@@ -1,7 +1,7 @@
 <html>
     <head>
         <style type="text/css">
-            .console{
+            .console {
                 border: 1px solid #000000;
                 width: 400px;
                 height: 200px;
@@ -9,7 +9,8 @@
                 background: #000000;
                 color: #ffffff;
             }
-            .button-speak{
+
+            .button-speak {
                 width: 100px;
                 height: 30px;
             }
@@ -20,14 +21,24 @@
         <div class="console" id="J_Console"></div>
         <button class="button-speak" id="J_Speak">click me</button>
         <script type="text/javascript">
-            YUI({combine:true}).use('node',function(Y){
-                var console= Y.one('#J_Console');
+            var config = {
+                comboBase:'http://a.tbcdn.cn/??',
+                root:'s/yui/3.5.0/build/',
+                combine:false,
+                filter:{
+                    'searchExp':"&",
+                    'replaceStr':","
+                }
+            };
+            //todo Ñ°ÕÒ×îÐ¡ÒÀÀµÄ£¿é
+            YUI(config).use('node-base', function (Y) {
+                var console = Y.one('#J_Console');
 
-                function speak(){
+                function speak() {
                     console.append("&gt Hello World!<br/>");
                 }
 
-                Y.one('#J_Speak').on('click',speak);
+                Y.one('#J_Speak').on('click', speak);
             });
         </script>
     </body>
