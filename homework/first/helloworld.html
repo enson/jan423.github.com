@@ -1,13 +1,30 @@
 <html>
     <head>
+        <style type="text/css">
+            .console{
+                border: 1px solid #000000;
+                width: 400px;
+                height: 200px;
+                overflow-y: scroll;
+                background: #000000;
+                color: #ffffff;
+            }
+            .button-speak{
+                width: 100px;
+                height: 30px;
+            }
+        </style>
         <script type="text/javascript" src="http://a.tbcdn.cn/??s/yui/3.5.1/build/yui/yui-min.js"></script>
     </head>
     <body>
-        <button id="J_Speak">click me</button>
+        <div class="console" id="J_Console"></div>
+        <button class="button-speak" id="J_Speak">click me</button>
         <script type="text/javascript">
             YUI({combine:true}).use('node',function(Y){
+                var console= Y.one('#J_Console');
+
                 function speak(){
-                    alert("Hello World!");
+                    console.append("&gt Hello World!<br/>");
                 }
 
                 Y.one('#J_Speak').on('click',speak);
