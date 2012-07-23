@@ -5,7 +5,7 @@
     <body>
         <button id="J_Speak">click me</button>
         <script type="text/javascript">
-            YUI().use('node',function(Y){
+            YUI({combine:true}).use('node',function(Y){
                 function speak(){
                     alert("Hello World!");
                 }
