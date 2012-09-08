@@ -33,3 +33,32 @@
 ###alias
 
 	git conf alias.lo "log --graph --raw"
+
+
+## 信息摘要
+
+一个算法，可以将任意长度的信息转换为固定长度输出，并且对不同信息的摘要唯一。目前比较著名的实现算法有MD5与SHA1。当然转换后的信息重复的概率很小。
+
+在git中摘要是对commit，blob和tree进行SHA1。
+
+其实理解了git的原理很容易玩转git的。
+
+## reset 和reflog
+
+reset是将以前的commit恢复到工作区或者缓冲区
+
+reflog是利用log文件将commit恢复到日志中某个状态
+
+### reset
+	//soft只改变commit对象
+	//mixed只commit、暂存区而不改变工作区，默认为这个参数
+	//hard改变所有区域
+	git reset [--soft | --mixed | --hard ] [<commit>]
+	git reset HEAD
+	git reset HEAD^^
+
+### reflog
+
+	git reset [--soft | --mixed | --hard ] [<commit>]
+	//改变当前工作区，缓冲区，commit到master的第三个状态
+	git reset --hard master@{3}
