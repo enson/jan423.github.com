@@ -21,7 +21,8 @@
 	//配置一些简单的别名demo
 	git conf alias.st status
 	git conf alias.br branch
-	git conf alias.comm "commit -am"
+	git conf alias.com "commit -am"
+	git conf alias.ch checkout
 
 ## Log命令的一些配置
 	
