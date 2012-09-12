@@ -25,6 +25,7 @@
 	git conf alias.br branch
 	git conf alias.com "commit -am"
 	git conf alias.ch checkout
+	git conf alias.lo "log --graph --raw"
 
 ## Log命令的一些配置
 	
