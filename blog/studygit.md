@@ -32,6 +32,8 @@
 	git conf alias.com "commit -am"
 	git conf alias.ch checkout
 	git conf alias.lo "log --graph --raw"
+	git conf alias.rl "reflog"
+	git conf alias.rs "reset"
 
 ### Log命令的一些配置
 	
@@ -67,7 +69,10 @@ reflog是利用log文件将commit恢复到日志中某个状态
 	git reset HEAD^^
 
 #### reflog
-
-	git reset [--soft | --mixed | --hard ] [<commit>]
-	//改变当前工作区，缓冲区，commit到master的第三个状态
+reflog用来显示commit的历史，对应的文件位置在.git/logs文件夹里。
+	
+	//默认为显示所有ref的commit历史。
+	git reflog [show] [log-options] [<ref>]
+	git reflog jan
+	
 	git reset --hard master@{3}
