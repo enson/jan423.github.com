@@ -70,3 +70,15 @@ father执行后返回一个匿名函数，但是这个匿名函数作用域链�
 	Object.prototype.x = 10;
 	 
 	foo(); // 10
+
+## with & catch 与作用域链
+
+通过with和catch我们可以修改作用域链。可以把他们的参数插入作用域最顶端。
+
+	with ({x: 20}) {
+	  var x = 30, y = 30;
+	  alert(x); // 30
+	  alert(y); // 30
+	}
+
+通过with x变量插入到变量对象前一位，成为作用域链对象的第一位。
