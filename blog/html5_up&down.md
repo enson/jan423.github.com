@@ -10,8 +10,6 @@
 
 当mozila发布1.1浏览器时发现自己的引擎有些bug：虽然声明了doctype但是有些渲染还是按照quirks模式渲，当修复了这个bug后返现现在网络上的网页已经变得五花八门。没办法为了迎合网页渲染，又搞了个almost standard mode。
 
-**总的来说是ie5为了支持标准web规范（standard mode）创造了doctype，mozila因为bug不幸创造了almost standard mode。**
-
 Henri Sivonen 在他的大作“使用Doctype 激活浏览器的渲染模式”一文中作了总结
 
 >* Quirks
@@ -26,4 +24,12 @@ Henri Sivonen 在他的大作“使用Doctype 激活浏览器的渲染模式”�
 >
 >	ff，safari，chrome，opera和ie8也具有被称为almost standard mode，其中以传统方式实现了表格单元格的竖直尺寸，没有严格遵循css2规范，html5中讲这个模式称为limited quirks mode（有限quriks模式）
 
+其实almost standard mode和standard mode相差不多。
+
 html5规定使用<\!doctype html> doctype触发标准模式。
+
+*.dtd文档设定了文档的标记符的语法规则：嵌套关系，属性种类等等。
+
+关于doctype详细信息可以参照这个网站[!DOCTYPE](http://baike.baidu.com/view/1091028.htm)。
+
+**总的来说是ie5为了支持标准web规范（standard mode）创造了doctype，mozila因为bug不幸创造了almost standard mode。为了产品的市场份额，浏览器做了很多兼容处理，并不是严格实施规范。**
