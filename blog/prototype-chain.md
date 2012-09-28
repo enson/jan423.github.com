@@ -18,6 +18,11 @@
 
 可以说函数对象是对象扩展，相比普通对象函数对象多了一个**逻辑代码**+**prototype**属性。prototype属性指向一个对象，这个对象有一个constructor属性指向函数对象。
 
+![function](http://jan423.github.com/blog/res/img/function.png)
+
+![function](http://jan423.github.com/blog/res/img/object.png)
+
+
 ## new操作符
 
 当我们使用new调用构造函数时会自动的创建一个对象，因此构造函数本身只要初始化这个新对象的状态。调用构造函数的一个特征就是把构造函数的**prototype**属性被用作新对象的原型,即新对象的\_\_proto\_\_属性会指向构造函数的prototype指向的对象。多个对象的\_\_proto\_\_都指向同一个prototype对象。
@@ -61,12 +66,19 @@ Object是所有对象直接或者间接构造器，Function是所有函数的直
     }
     alert(f()());
 
-输出是多少呢？这要从作用域链和原型链说起。自己去悟吧。
-
 ### 提示
 
 * 作用域在js里也是对象，查找变量也是在作用域对象中查找的。
 * typeof window === 'object'
+
+### 解释变量的二维查找
+
+引擎先查找返回的匿名函数的作用域对象，发现没有sth变量，进而沿着作用域链的第二位查找f的作用域对象，发现也没有，接着查找globel（window）作用域对象，发现也没有。接着沿着window的原型查找,发现Object.prototype.sth = "O"，所以...
+
+	window.__proto__===Window.prototype;//true
+	Window.__proto__===Object.prototype;//true
+	window instanceof Window;//true
+	window instanceof Object;//true
 
 ## 原型链的优势
 
