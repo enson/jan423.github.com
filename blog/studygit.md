@@ -34,6 +34,9 @@
 	git conf alias.lo "log --graph --raw"
 	git conf alias.rl "reflog"
 	git conf alias.rs "reset"
+	git conf alias.df "diff"
+	git conf alias.pl "pull"
+	git conf alias.ps "push"
 
 ### Log命令的一些配置
 	
