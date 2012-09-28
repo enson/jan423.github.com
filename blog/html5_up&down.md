@@ -33,3 +33,16 @@ html5规定使用<\!doctype html> doctype触发标准模式。
 关于doctype详细信息可以参照这个网站[!DOCTYPE](http://baike.baidu.com/view/1091028.htm)。
 
 **总的来说是ie5为了支持标准web规范（standard mode）创造了doctype，mozila因为bug不幸创造了almost standard mode。为了产品的市场份额，浏览器做了很多兼容处理，并不是严格实施规范。**
+
+## meta
+
+这个是http response头里的一个信息，用来告诉浏览器传输的是什么类型的信息。
+
+	Content-Type:text/html; charset=GB2312
+	Content-Type:text/css
+	Content-Type:image/png
+	Content-Type:application/x-javascript
+	......
+
+这个meta和html中的meta相比，优先级更高。
+
