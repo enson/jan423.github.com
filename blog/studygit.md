@@ -6,6 +6,10 @@
 
 [http://www.slideshare.net/chacon/getting-git](http://www.slideshare.net/chacon/getting-git)
 
+查看每个命令的详细信息可以使用
+
+	git xx --help
+
 ## git相关的配置
 
 ### 配置的作用域
