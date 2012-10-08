@@ -1,4 +1,4 @@
-# (VO|AO)&[[scope]]&closure
+# VO&[[scope]]&closure
 
 参考资料
 
@@ -30,9 +30,14 @@ JS作用域要么在函数内，要么在global中，所以我们声明的变量
 
 ### 函数的vo
 
-函数的VO叫AO(活动对象)，相比global，函数的AO更丰富。
+函数的活动对象
 
-当进入执行上下文AO会有如下属性：
+	activeExecutionContext = {
+	  VO: {...},
+	  this: thisValue
+	};
+
+当进入执行上下文VO会有如下属性：
 
 * 函数的所有形参(如果我们是在函数执行上下文中)
 
@@ -57,9 +62,9 @@ JS作用域要么在函数内，要么在global中，所以我们声明的变量
 
 ### [[scope]]
 
-[[scope]]是函数的内部属性，它指向一个数组对象，这个数组对象会包含父亲函数的一直到global的VO或AO。
+[[scope]]是函数的内部属性，它指向一个数组对象，这个数组对象会包含父亲函数的VO一直到global的VO。
 
-	[[scope]]-->AO+[[scope]]
+	[[scope]]-->VO+[[scope]]
 
 这个对象在2种环境（进入执行环境，执行代码）有不同状态。
 
@@ -71,17 +76,17 @@ JS作用域要么在函数内，要么在global中，所以我们声明的变量
 
 * 进入执行环境
 	
-        f.AO={
+        f.VO={
             a:undefined
         }
 		f.scope=[global.VO];//全局vo在进入f的执行环境前已经创建了。
 
-* 执行，把f的AO推入[[scope]]指向的数据对象第一位。
+* 执行，把f的VO推入[[scope]]指向的数据对象第一位。
 
-        f.AO={
+        f.VO={
         	a:1
         }
-		f.scope=[f.AO，global.VO];
+		f.scope=[f.VO，global.VO];
 
 ### catch,with可以改变[[scope]]指向的数组对象结构
 
@@ -109,4 +114,19 @@ catch，with关键词会在执行时把**参数**推入[[scope]]指向的数组�
 
 ## 闭包
 
-当函数内部定义了其他函数，就创建了闭包，闭包有权访问父级函数们的所有VO。所有函数都可以叫闭包，因为所有函数都直接或者间接引用了global.vo。
+>当函数内部定义了其他函数，就创建了闭包，闭包有权访问父级函数的**VO**所有变量。
+
+如果子函数[[scope]]持续引用了父函数的VO，就会使父函数的VO无法销毁掉。所以我们要妥善处理闭包的特性。
+
+    function f() {
+        var val = 1;
+        return function () {
+            return val;
+        }
+    }
+
+	var temp=f();
+
+返回的函数[[scope]]持有f函数的VO，已至于f执行后无法释放VO等所占用的内存。
+
+	var temp=null;//让GC去处理f的内存吧。
