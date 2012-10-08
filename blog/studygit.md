@@ -4,7 +4,15 @@
 
 这里有一个ppt可以让我们更好的理解、学习git
 
+详细配置信息可以查看
+
+	git xx --help
+
 [http://www.slideshare.net/chacon/getting-git](http://www.slideshare.net/chacon/getting-git)
+
+查看每个命令的详细信息可以使用
+
+	git xx --help
 
 ## git相关的配置
 
