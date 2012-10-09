@@ -1,25 +1,39 @@
 # ECMAScript中的this
 
-学习资料：[This? Yes,this!](http://www.cnblogs.com/TomXu/archive/2012/01/17/2310479.html)
+学习资料
+
+* [This? Yes,this!](http://www.cnblogs.com/TomXu/archive/2012/01/17/2310479.html)
+* [执行环境,作用域理解](http://wenku.baidu.com/view/358a14593b3567ec102d8ac3.html)
 
 这篇文章看得我是**云里雾里**的，我现在总结下我的理解，但是也合乎情理。
 
-当代码执行在相应的作用域时，这个作用域环境会产生一个活动对象，这个活动对象包如下：
+## 执行环境
+
+指的是代码执行所处的环境，也叫执行上下文（exection context），这个环境确定了作用域，代码生存期。
+
+### 三种执行环境
+
+* global
+* function
+* eval
+
+
+当代码进入执行环境时会产生一个执行活动对象activeExecutionContext，这个活动对象包如下：
 	
 	activeExecutionContext = {
 	  VO: {...},
 	  this: thisValue
 	};
 
-我们知道VO指向的对象包含这个作用域的变量，函数或者是参数。但是this指向的是什么？可以说是千奇百怪。
+我们知道当代码进入执行环境时，会创建一个VO属性，它指向的对象包含这个作用域的变量，函数或者是参数。但是this指向的是什么？可以说是千奇百怪。
 
-先按代码执行时所在作用域来说明this更为清晰
+因为this是在代码进入执行环境时确认的，所以按代码进入执行环境时所在说明this更为清晰
 
-## 顶级作用域global。
+## 顶级执行环境global。
 
 代码在global中执行，this永远都是global。
 
-## 代码在函数作用域
+## 代码在函数执行环境
 
 用调用函数的方式来确定this
 
@@ -78,6 +92,10 @@ this指向null，但是浏览器不会让你这么干，它会把null变为globa
     (function (){
         alert(this);//window
     })();
+
+## eval执行环境中的this
+
+	eval('alert(this)');//window
 
 ## 让我们回想下DOM事件
 
