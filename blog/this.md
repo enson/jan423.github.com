@@ -5,8 +5,6 @@
 * [This? Yes,this!](http://www.cnblogs.com/TomXu/archive/2012/01/17/2310479.html)
 * [执行环境,作用域理解](http://wenku.baidu.com/view/358a14593b3567ec102d8ac3.html)
 
-这篇文章看得我是**云里雾里**的，我现在总结下我的理解，但是也合乎情理。
-
 ## 执行环境
 
 指的是代码执行所处的环境，也叫执行上下文（exection context），这个环境确定了作用域，代码生存期。
