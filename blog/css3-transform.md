@@ -8,7 +8,7 @@
 
 这里有篇[**blog**](http://www.useragentman.com/blog/2011/01/07/css3-matrix-transform-for-the-mathematically-challenged/comment-page-1)写的很好，它深入讲解了transform的matrix函数。
 
-**注意** transform-origin是设置图形的基本参照点，计算前和计算后的4个坐标点都是按照origin的位置确定的，它的默认为50% 50%，也就是图形的中心。
+**注意** transform-origin是设置图形变形坐标的基本参照点，计算前和计算后的4个坐标点都是按照origin的位置确定的，它的默认为50% 50%，也就是图形的中心。
 
 ## 例子
 
