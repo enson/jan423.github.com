@@ -14,7 +14,21 @@
 
 **注意**：一个图形没有transform时其matrix的参数是（1,0,0,1,0,0）。
 
-如果我们有一个图形（width:200px,height:100px），并且设置transform-origin:50% 50%。那么变换前4个坐标（**相对于变形origin**）为
+
+如果我们有一个图形（width:200px,height:100px），并且设置transform-origin:50% 50%。
+
+    <style type="text/css">
+        .matrix {
+            width: 200px;
+            height: 100px;
+            border: 1px solid #000;
+            -webkit-transform-origin: 50% 50%;
+            -webkit-transform: matrix(3, 4, 5, 6, 100, 50);
+        }
+    </style>
+    <div class="matrix"></div>
+
+那么变换前4个坐标（**相对于变形origin**）为
 	
 	(-100px,-50px)
 			|——————————|(100px,-50px)
@@ -24,7 +38,7 @@
 
 现在我们给它变换
 
-	transform:matrix(3,4,5,6,100px,50px);
+	transform:matrix(3,4,5,6,100,50);
 
 先算左上角经过变换的坐标值，我们会生成2个矩阵：matrix的参数矩阵和原先坐标矩阵
 
@@ -66,11 +80,11 @@
 	| 4 6 50  | * |   50 | = | 4*100+6*50+50*1   | = |  750 |
 	| 0 0  1  |   |   1  |   | 0*-100+0*50+1*1   |	 |   1  |
 
-所以新坐标为
+所以新坐标(相对于origin的位置)为
 
 	(-450px,-650px)
 			|——————————|(150px,150px)
-			|	  .    |
+			|	  *    |
 			|——————————|(650px,750px)
 	(50px,-50px)
 
