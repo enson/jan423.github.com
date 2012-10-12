@@ -51,7 +51,7 @@ this指向这些函数的第一个参数
 
 #### 当生成的函数对象有被引用
 
-如果函数被引用，那么this指向这个引用函数的东东的所属环境。
+如果函数被引用，那么this指向这个引用函数的东东的所属环境，但是函数被函数的VO引用那么this指向null，再而转为global。
 
 * test1
 
@@ -72,6 +72,19 @@ this指向这些函数的第一个参数
 		}
 		f();//global
 		f.prototype.constructor();//f.prototype
+
+* test3
+这种情况下，f被k的vo引用，f的执行环境的this指向null，转为global。
+
+		function k() {
+            function f() {
+                alert(this);
+            }
+            f();//window
+        }
+
+		k.vo.f=function;
+		f.this=null==>global;
 
 #### 当函数没有被引用
 
