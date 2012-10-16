@@ -3,9 +3,10 @@
 参考资料
 
 * [执行环境,作用域理解](http://wenku.baidu.com/view/358a14593b3567ec102d8ac3.html)
+* [深入理解JavaScript系列（2）：揭秘命名函数表达式](http://www.cnblogs.com/TomXu/archive/2011/12/29/2290308.html)
 * [深入理解JavaScript系列（12）：变量对象（Variable Object）](http://www.cnblogs.com/TomXu/archive/2012/01/16/2309728.html)
-* [深入理解JavaScript系列（13）：This? Yes,this!](http://www.cnblogs.com/TomXu/archive/2012/01/17/2310479.html)
 * [深入理解JavaScript系列（14）：作用域链(Scope Chain)](http://www.cnblogs.com/TomXu/archive/2012/01/18/2312463.html)
+* [深入理解JavaScript系列（13）：This? Yes,this!](http://www.cnblogs.com/TomXu/archive/2012/01/17/2310479.html)
 
 代码的执行所处的环境，也叫执行上下文,它确定了代码的作用域，作用域链，this属性，代码的生存期等等。
 	
@@ -37,6 +38,29 @@
 		声明的函数，
 		参数(函数内部VO拥有)
 	}
+
+### 函数的声明
+
+	函数声明:
+
+　　function 函数名称 (参数：可选){ 函数体 }
+
+　　函数表达式：
+
+　　function 函数名称（可选）(参数：可选){ 函数体 }
+
+ECMAScript是通过上下文来区分的，如果function foo(){}是作为赋值表达式的一部分的话，那它就是一个函数表达式，如果function foo(){}被包含在一个函数体内，或者位于程序的最顶部的话，那它就是一个函数声明。
+
+	function foo(){} // 声明，因为它是程序的一部分
+	var bar = function foo(){}; // 表达式，因为它是赋值表达式的一部分
+	
+	new function bar(){}; // 表达式，因为它是new表达式
+	
+	(function(){
+		function bar(){} // 声明，因为它是函数体的一部分
+	})();
+
+	(function foo(){}); // 函数表达式：包含在分组操作符()内
 
 EC确定了VO的不同，所以按EC给VO分类。
 
