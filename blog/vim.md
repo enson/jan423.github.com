@@ -4,7 +4,7 @@
 
 ### 基于DOS的OS换行符是 CR & LF
 
-Carriage-Return Line-Feed.
+Carriage-Return Line-Feed，当时定义时是从[电传打印机](http://baike.baidu.com/view/377896.htm)那里学来的：先回到当前行的最左边\r，然后换行\n，有写协议是由CRLF作为分割符。
 
 对应ASCII的码表
 
