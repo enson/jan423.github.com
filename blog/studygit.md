@@ -1,14 +1,9 @@
 # StudyGit
 
-## git的原理和常用操作
+学习资料：
 
-这里有一个ppt可以让我们更好的理解、学习git
-
-详细配置信息可以查看
-
-	git xx --help
-
-[http://www.slideshare.net/chacon/getting-git](http://www.slideshare.net/chacon/getting-git)
+* [getting-git](http://www.slideshare.net/chacon/getting-git)
+* [图解git](http://marklodato.github.com/visual-git-guide/index-zh-cn.html)
 
 查看每个命令的详细信息可以使用
 
@@ -22,7 +17,7 @@
 	git config --global xxxx
 	git config --system xxxx
 
-三个参数（null，global，system）分别对应于版本库，用户级别，系统级别。
+三个option（null，global，system）分别对应于版本库，用户级别，系统级别。
 
 ### 配置别名
 	
@@ -39,10 +34,10 @@
 	git conf alias.br branch
 	git conf alias.com "commit -am"
 	git conf alias.ch checkout
-	git conf alias.lo "log --graph --raw"
+	git conf alias.lg "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 	git conf alias.rl "reflog"
 	git conf alias.rs "reset"
-	git conf alias.df "diff"
+	git conf alias.df "diff --stat"
 	git conf alias.pl "pull"
 	git conf alias.ps "push"
 
