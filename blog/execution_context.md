@@ -72,6 +72,7 @@ ECMAScript是通过上下文来区分的，如果function foo(){}是作为赋值
 
 但是这个foo只在foo函数EC中有效，因为规范规定了标示符foo不能在外围的EC有效，而且是在foo的VO中存在，有些浏览器（chrome）是无法用debug访问到的，但是firefox是可以访问到的。
 
+	typeof(foo);//undefined
     var bar = function foo() {
         alert(typeof foo);//function
         function k(){}
