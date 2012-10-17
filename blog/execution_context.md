@@ -57,6 +57,32 @@ ECMAScript是通过上下文来区分的，如果function foo(){}是作为赋值
 
 	(function foo(){}); // 函数表达式：包含在分组操作符()内，而分组符里的表达式
 
+注意：根据表达式的生成函数的函数名称是不会放入函数所处的EC的VO中的。
+
+#### DEMO
+
+    function f() {
+        var bar = function foo() {};//这是表达式声明函数
+
+		typeof bar;//function;
+        typeof foo;//undefined;
+    }
+
+    f.VO.foo=undefined;//无论是在代码进入环境还是代码执行的时候
+
+但是这个foo只在foo函数EC中有效，因为规范规定了标示符foo不能在外围的EC有效，而且是在foo的VO中存在，有些浏览器（chrome）是无法用debug访问到的，但是firefox是可以访问到的。
+
+    var bar = function foo() {
+        alert(typeof foo);//function
+        function k(){}
+        return function () {
+            alert(typeof foo);//function
+            alert(typeof k);//function
+        }
+    }
+    
+    bar()();
+
 EC确定了VO的不同，所以按EC给VO分类。
 
 ### 全局环境的VO
@@ -79,6 +105,20 @@ EC确定了VO的不同，所以按EC给VO分类。
 
 	由名称和对应值组成的一个变量对象的属性被创建；没有传递对应参数的话，那么由名称和undefined值组成的一种变量对象的属性也将被创建。
 
+		function f(a, b, a) {
+		    debugger;
+		}
+		f(1, 2, 3);
+		
+		**执行的时候**f的VO
+
+		f.VO={
+			a:3,
+			b:2
+		}	
+		
+	因为形参名字重复，而VO的key是不可以重复的（VO是一个对象），所以在代码执行给VO赋值时根据先后顺序最后一个实参会覆盖第一个实参的值。
+
 * 所有函数声明(FunctionDeclaration, FD)
 
 	由名称和对应值（函数对象(function-object)）组成一个变量对象的属性被创建；如果变量对象已经存在相同名称的属性，则完全替换这个属性。
@@ -95,6 +135,44 @@ EC确定了VO的不同，所以按EC给VO分类。
 	x = 20;
 	function x() {};
 	alert(x); // 20
+
+#### DEMO
+
+    function f(a, b, c) {
+    	var a = a, g = 1;
+	    function g() {
+	        //function body
+	    }
+	    var k = 1;
+    }
+
+    f(1, 2, 3);
+
+
+引擎进入执行环境时，把EC中的变量，形参，声明的函数放入VO，成为VO的属性
+
+    f.VO={
+        a:undefined,//这个是形参的a，优先级高于声明的变量a
+        b:undefined,//这个是形参的b
+        c:undefined,//这个是形参的c
+        g:function,//函数的优先级最高，覆盖了变量g
+        k:undefined//声明的k
+    };
+
+代码执行时给VO属性赋值，按代码执行过程
+
+    f.VO={
+        a:1,
+        b:2,
+        c:3,
+        g:function,
+        k:1
+    };
+	
+总结：
+
+* 所以我们没必要在函数体内又声明一个和形参相同的变量,直接访问形参变量便是。
+* 我们声明的变量可以放到一起声明，原因已经在前面阐述了，而代码执行过程只是根据你的赋值表达式往VO中属性赋值。
 
 ## [[scope]]
 
