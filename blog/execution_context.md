@@ -8,6 +8,8 @@
 * [深入理解JavaScript系列（14）：作用域链(Scope Chain)](http://www.cnblogs.com/TomXu/archive/2012/01/18/2312463.html)
 * [深入理解JavaScript系列（13）：This? Yes,this!](http://www.cnblogs.com/TomXu/archive/2012/01/17/2310479.html)
 
+一下的内容都是在阐述事实，阐述解释器的原理，而不凭空猜想。
+
 代码的执行所处的环境，也叫执行上下文,它确定了代码的作用域，作用域链，this属性，代码的生存期等等。
 	
 	EC={
@@ -61,6 +63,8 @@ ECMAScript是通过上下文来区分的，如果function foo(){}是作为赋值
 
 #### DEMO
 
+test1
+
     function f() {
         var bar = function foo() {};//这是表达式声明函数
 
@@ -69,6 +73,7 @@ ECMAScript是通过上下文来区分的，如果function foo(){}是作为赋值
     }
 
     f.VO.foo=undefined;//无论是在代码进入环境还是代码执行的时候
+
 
 但是这个foo只在foo函数EC中有效，因为规范规定了标示符foo不能在外围的EC有效，而且是在foo的VO中存在，有些浏览器（chrome）是无法用debug访问到的，但是firefox是可以访问到的，但是IE6~IE8是在foo的外围可以访问到foo的，IE9已经修复了这个问题，可以用IE8执行如下代码。
 
@@ -85,6 +90,49 @@ ECMAScript是通过上下文来区分的，如果function foo(){}是作为赋值
     }
 
     bar()();
+
+test2
+	
+    function f(a) {
+        a = a;
+		b = a;
+    }
+    f(1);
+    alert(a);//undefined
+    alert(b);//1
+
+test2很奇怪是吧，我们认为会提示“1”，但是是undefined。在我们的脑海里总是有这个概念：没有声明的变量会变成全局变量，其实根本没这回事。事实是：给没有声明的变量赋值造成的现象是变量变为了global的属性，而不是一个全局变量。让我们来看下代码的流程。
+
+进入环境
+
+	f.VO={
+		a:undefined
+	}
+
+**这里没有把b算入f的VO，因为b不是声明出来的**
+
+执行时
+
+形参a根据实参1，被赋予1，代码第一行a=a,右边的a为1，解释给左边的a赋值，解释器从VO开始寻找a，发现VO中有a，就给其赋予形参a的值——1。解释器寻找b,从[[scope]]寻找一直到global的VO都没找到b，于是就给global添加一个属性——b，赋值于1。期间没有**产生新的变量**。
+
+    
+    function f() {
+        var a = 1;
+
+        return {
+            set:function (b) {
+                a = b;
+            },
+            get:function () {
+                return a;
+            }
+        }
+    }
+
+	var o=f();
+	o.set(2);
+	o.get();//2
+
 
 EC确定了VO的不同，所以按EC给VO分类。
 
