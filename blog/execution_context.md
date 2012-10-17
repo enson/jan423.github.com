@@ -70,18 +70,20 @@ ECMAScript是通过上下文来区分的，如果function foo(){}是作为赋值
 
     f.VO.foo=undefined;//无论是在代码进入环境还是代码执行的时候
 
-但是这个foo只在foo函数EC中有效，因为规范规定了标示符foo不能在外围的EC有效，而且是在foo的VO中存在，有些浏览器（chrome）是无法用debug访问到的，但是firefox是可以访问到的。
+但是这个foo只在foo函数EC中有效，因为规范规定了标示符foo不能在外围的EC有效，而且是在foo的VO中存在，有些浏览器（chrome）是无法用debug访问到的，但是firefox是可以访问到的，但是IE6~IE8是在foo的外围可以访问到foo的，IE9已经修复了这个问题，可以用IE8执行如下代码。
 
-	typeof(foo);//undefined
+    alert(typeof foo);//undefined
     var bar = function foo() {
         alert(typeof foo);//function
-        function k(){}
+        function k() {
+        }
+
         return function () {
             alert(typeof foo);//function
             alert(typeof k);//function
         }
     }
-    
+
     bar()();
 
 EC确定了VO的不同，所以按EC给VO分类。
@@ -111,7 +113,7 @@ EC确定了VO的不同，所以按EC给VO分类。
 		}
 		f(1, 2, 3);
 		
-		**执行的时候**f的VO
+	**执行的时候**f的VO
 
 		f.VO={
 			a:3,
