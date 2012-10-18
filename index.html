@@ -20,14 +20,19 @@
                     baseURL = 'http://jan423.github.com/';
 
                 function getBlog(blogName) {
-                    $.ajax({url:'http://jan423.github.com/blog/' + blogName || 'execution_context.md',
+                    $.ajax({url:'http://jan423.github.com/blog/' + blogName,
                         success:function (data) {
                             blog.innerHTML = converter.makeHtml(data);
                         }
                     });
                 }
 
-                getBlog();
+                window.onhashchange = function () {
+                    var blogName = location.hash.slice(1);
+                    getBlog(blogName);
+                }
+
+                getBlog('execution_context.md');
             });
         </script>
     </body>
