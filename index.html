@@ -28,7 +28,13 @@
                 }
 
                 window.onhashchange = function () {
-                    var blogName = location.hash.slice(1);
+                    var hash = location.hash,
+                        blogName;
+                    if (hash.indexOf('#') < 0) {
+                        blogName = 'execution_context.md';
+                    } else {
+                        blogName = location.hash.slice(1)
+                    }
                     getBlog(blogName);
                 }
 
