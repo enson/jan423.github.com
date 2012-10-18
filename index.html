@@ -15,14 +15,19 @@
 
         <script type="text/javascript">
             $(document).ready(function () {
-                var blog = $('#J_Blog')[0];
-                var converter =new Markdown.Converter();
+                var blog = $('#J_Blog')[0],
+                    converter = new Markdown.Converter(),
+                    baseURL = 'http://jan423.github.com/';
 
-                $.ajax({url:'http://jan423.github.com/blog/execution_context.md',
-                    success:function (data) {
-                        blog.innerHTML = converter.makeHtml(data);
-                    }
-                });
+                function getBlog(blogName) {
+                    $.ajax({url:'http://jan423.github.com/blog/' + blogName || 'execution_context.md',
+                        success:function (data) {
+                            blog.innerHTML = converter.makeHtml(data);
+                        }
+                    });
+                }
+
+                getBlog();
             });
         </script>
     </body>

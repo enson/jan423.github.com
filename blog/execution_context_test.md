@@ -1,3 +1,22 @@
+	alert(typeof(f));//undefined
+    alert(typeof(g));//undefined
+    var g = function f() {
+        alert(f);
+    }
+    alert(typeof(g));//function
+***
+    function f(a) {
+        a = a;
+    }
+    f(1);
+    alert(a);
+***
+	function f() {
+	    arguments[2] = 3;
+	    console.log(arguments);//[1,2]
+	}
+	f(1, 2);       
+***
 	//create function
     function foo() {} // 声明，因为它是程序的一部分
 
@@ -12,6 +31,8 @@
 
     (function foo() {
     }); // 函数表达式：包含在分组操作符()内
+
+	a=1,function f(){}；//函数表达式，在逗号运算符中都是表达式
 ***
     //vo test1
     (function () {
