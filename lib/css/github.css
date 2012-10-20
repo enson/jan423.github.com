@@ -1,5 +1,5 @@
 html {
-    padding: 0 10px;
+    padding: 0;
 }
 
 body {
@@ -13,19 +13,9 @@ body {
 }
 
 .epiceditor-preview {
-    padding-top: 10px;
-    padding-bottom: 10px;
     font-family: '\5FAE\8F6F\96C5\9ED1', '\5B8B\4F53', Helvetica, arial, freesans, clean, sans-serif;
     font-size: 13px;
     line-height: 1.6;
-}
-
-.epiceditor-preview>*:first-child {
-    margin-top: 0 !important;
-}
-
-.epiceditor-preview>*:last-child {
-    margin-bottom: 0 !important;
 }
 
 .epiceditor-preview a {
@@ -43,8 +33,7 @@ body {
 .epiceditor-preview h4,
 .epiceditor-preview h5,
 .epiceditor-preview h6 {
-    margin: 20px 0 10px;
-    padding: 0;
+    padding-top: 15px;
     font-weight: bold;
     -webkit-font-smoothing: antialiased;
 }
@@ -92,6 +81,10 @@ body {
     font-size: 14px;
 }
 
+.epiceditor-preview li {
+    list-style: disc;
+}
+
 .epiceditor-preview p,
 .epiceditor-preview blockquote,
 .epiceditor-preview ul,
@@ -100,54 +93,19 @@ body {
 .epiceditor-preview li,
 .epiceditor-preview table,
 .epiceditor-preview pre {
-    margin: 15px 0;
+    padding: 10px 0 5px 0;
 }
 
 .epiceditor-preview hr {
-    background: transparent url('../../images/modules/pulls/dirty-shade.png') repeat-x 0 0;
     border: 0 none;
     color: #ccc;
     height: 4px;
     padding: 0;
 }
 
-.epiceditor-preview>h2:first-child,
-.epiceditor-preview>h1:first-child,
-.epiceditor-preview>h1:first-child+h2,
-.epiceditor-preview>h3:first-child,
-.epiceditor-preview>h4:first-child,
-.epiceditor-preview>h5:first-child,
-.epiceditor-preview>h6:first-child {
-    margin-top: 0;
-    padding-top: 0;
-}
-
-.epiceditor-preview h1+p,
-.epiceditor-preview h2+p,
-.epiceditor-preview h3+p,
-.epiceditor-preview h4+p,
-.epiceditor-preview h5+p,
-.epiceditor-preview h6+p {
-    margin-top: 0;
-}
-
-.epiceditor-preview li p.first {
-    display: inline-block;
-}
-
 .epiceditor-preview ul,
 .epiceditor-preview ol {
     padding-left: 30px;
-}
-
-.epiceditor-preview ul li>:first-child,
-.epiceditor-preview ol li>:first-child {
-    margin-top: 0;
-}
-
-.epiceditor-preview ul li>:last-child,
-.epiceditor-preview ol li>:last-child {
-    margin-bottom: 0;
 }
 
 .epiceditor-preview dl {
@@ -162,43 +120,15 @@ body {
     margin: 15px 0 5px;
 }
 
-.epiceditor-preview dl dt:first-child {
-    padding: 0;
-}
-
-.epiceditor-preview dl dt>:first-child {
-    margin-top: 0;
-}
-
-.epiceditor-preview dl dt>:last-child {
-    margin-bottom: 0;
-}
-
 .epiceditor-preview dl dd {
     margin: 0 0 15px;
     padding: 0 15px;
-}
-
-.epiceditor-preview dl dd>:first-child {
-    margin-top: 0;
-}
-
-.epiceditor-preview dl dd>:last-child {
-    margin-bottom: 0;
 }
 
 .epiceditor-preview blockquote {
     border-left: 4px solid #DDD;
     padding: 0 15px;
     color: #777;
-}
-
-.epiceditor-preview blockquote>:first-child {
-    margin-top: 0;
-}
-
-.epiceditor-preview blockquote>:last-child {
-    margin-bottom: 0;
 }
 
 .epiceditor-preview table {
@@ -216,10 +146,6 @@ body {
     padding: 0;
 }
 
-.epiceditor-preview table tr:nth-child(2n) {
-    background-color: #f8f8f8;
-}
-
 .epiceditor-preview table tr th {
     font-weight: bold;
 }
@@ -232,16 +158,6 @@ body {
     padding: 6px 13px;
 }
 
-.epiceditor-preview table tr th>:first-child,
-.epiceditor-preview table tr td>:first-child {
-    margin-top: 0;
-}
-
-.epiceditor-preview table tr th>:last-child,
-.epiceditor-preview table tr td>:last-child {
-    margin-bottom: 0;
-}
-
 .epiceditor-preview img {
     max-width: 100%;
 }
@@ -249,16 +165,6 @@ body {
 .epiceditor-preview span.frame {
     display: block;
     overflow: hidden;
-}
-
-.epiceditor-preview span.frame>span {
-    border: 1px solid #ddd;
-    display: block;
-    float: left;
-    overflow: hidden;
-    margin: 13px 0 0;
-    padding: 7px;
-    width: auto;
 }
 
 .epiceditor-preview span.frame span img {
@@ -297,13 +203,6 @@ body {
     clear: both;
 }
 
-.epiceditor-preview span.align-right>span {
-    display: block;
-    overflow: hidden;
-    margin: 13px 0 0;
-    text-align: right;
-}
-
 .epiceditor-preview span.align-right span img {
     margin: 0;
     text-align: right;
@@ -325,13 +224,6 @@ body {
     margin-left: 13px;
     overflow: hidden;
     float: right;
-}
-
-.epiceditor-preview span.float-right>span {
-    display: block;
-    overflow: hidden;
-    margin: 13px auto 0;
-    text-align: right;
 }
 
 .epiceditor-preview code,

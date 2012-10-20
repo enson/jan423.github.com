@@ -3,24 +3,95 @@
     <head>
         <meta charset="utf-8"/>
         <title>{author:疯癫de小牛仔}</title>
+        <link rel="stylesheet"
+              href="http://a.tbcdn.cn/??p/global/1.0/global-min.css,apps/et/common/css/trip-reset-min.css,apps/et/common/css/trip-global-min.css,app/dp/s/html5/css/common-min.css"/>
         <link rel="stylesheet" href="lib/css/github.css"/>
         <script type="text/javascript" src="lib/js/jquery-1.7.2.min.js"></script>
         <script type="text/javascript" src="lib/js/Markdown.Converter-min.js"></script>
+        <style type="text/css">
+        </style>
     </head>
 
     <body>
         <div style="width: 990px;margin: 0 auto;" class="epiceditor-preview" id="J_Blog">
 
         </div>
+        <style type="text/css">
+            .nav {
+                position: fixed;
+                left: 0px;
+                top: 0px;
+                width: 200px;
+                height: 300px;
+                background: #ffffff;
+                text-align: center;
+                line-height: 24px;
+                /*translate*/
+                -webkit-transform: translate(-173px, 0px);
+                -moz-transform: translate(-173px, 0px);
+                -ms-transform: translate(-173px, 0px);
+                -o-transform: translate(-173px, 0px);
+                transform: translate(-173px, 0px);
 
+                -webkit-box-shadow: 0px 0px 3px #000000;
+                -moz-box-shadow: 0px 0px 3px #000000;
+                -ms-box-shadow: 0px 0px 3px #000000;
+                -o-box-shadow: 0px 0px 3px #000000;
+                box-shadow: 0px 0px 3px #000000;
+
+                -webkit-border-radius: 3px;
+                -moz-border-radius: 3px;
+                -o-border-radius: 3px;
+                -ms-border-radius: 3px;
+                border-radius: 3px;
+            }
+
+            .nav:hover {
+                -webkit-transform: translate(0px, 0px);
+                -moz-transform: translate(0px, 0px);
+                -ms-transform: translate(0px, 0px);
+                -o-transform: translate(0px, 0px);
+                transform: translate(0px, 0px);
+            }
+
+            .nav .blog-index {
+                margin-top: 20px;
+                float: right;
+                width: 19px;
+                font-size: 18px;
+                line-height: 30px;
+                margin-right: 5px;
+            }
+
+            .nav .blog-items {
+                width: 175px;
+                float: left;
+            }
+
+            .nav .blog-item {
+                cursor: pointer;
+            }
+
+            .nav .blog-item:hover {
+                background: #f5f5dc;
+            }
+        </style>
+        <section class="nav has-trans">
+            <h2 class="blog-index">目录</h2>
+            <ul class="blog-items" id="J_BlogItems">
+                <li class="blog-item has-trans" data-blog="execution_context.md">Execution Context</li>
+                <li class="blog-item has-trans" data-blog="diff&patch.md">Diff & Patch</li>
+                <li class="blog-item has-trans" data-blog="prototype-chain.md">Prototype Chain</li>
+            </ul>
+        </section>
         <script type="text/javascript">
             $(document).ready(function () {
                 var blog = $('#J_Blog')[0],
                     converter = new Markdown.Converter(),
-                    baseURL = 'http://jan423.github.com/';
+                    baseBlogURL = 'http://' + document.domain + '/blog/';
 
                 function getBlog(blogName) {
-                    $.ajax({url:'http://jan423.github.com/blog/' + blogName,
+                    $.ajax({url:baseBlogURL + blogName,
                         success:function (data) {
                             blog.innerHTML = converter.makeHtml(data);
                         }
@@ -39,6 +110,13 @@
                 }
 
                 window.onhashchange();
+
+
+                $('#J_BlogItems').on('click', function (e) {
+                    var target = e.target;
+                    if (target.tagName.toLowerCase() != "li")return;
+                    getBlog(target.getAttribute('data-blog'));
+                });
             });
         </script>
     </body>
