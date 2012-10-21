@@ -5,9 +5,8 @@
         <base target="_blank">
         <title>{author:疯癫de小牛仔}</title>
         <link type="image/x-icon" href="lib/img/jan16.ico" rel="shortcut icon"/>
-        <link rel="stylesheet"
-              href="http://a.tbcdn.cn/??p/global/1.0/global-min.css,apps/et/common/css/trip-reset-min.css,apps/et/common/css/trip-global-min.css,app/dp/s/html5/css/common-min.css"/>
         <link rel="stylesheet" href="lib/css/github.css"/>
+        <link rel="stylesheet" href="lib/css/reset&html5.css"/>
         <!--[if lt IE 9]>
         <script src="http://a.tbcdn.cn/app/dp/s/html5/js/??html5shiv-min.js,modernizr-v2.5.3-min.js"></script>
         <![endif]-->
@@ -17,14 +16,17 @@
         <script type="text/javascript" src="lib/js/jquery-1.7.2.min.js"></script>
         <script type="text/javascript" src="lib/js/Markdown.Converter-min.js"></script>
         <style type="text/css">
-        </style>
-    </head>
+            .content {
+                width: 990px;
+                margin: 0 auto;
+            }
 
-    <body>
-        <div style="width: 990px;margin: 0 auto;" class="epiceditor-preview" id="J_Blog">
+            .loading {
+                width: 990px;
+                height: 100px;
+                background: url("lib/img/loading.gif") no-repeat center center;
+            }
 
-        </div>
-        <style type="text/css">
             .nav {
                 position: fixed;
                 left: 0px;
@@ -107,6 +109,14 @@
             }
 
         </style>
+
+    </head>
+
+    <body>
+        <div style="" class="epiceditor-preview content">
+            <div id="J_Loading" class="loading"></div>
+            <div id="J_Blog"></div>
+        </div>
         <section class="nav has-trans">
             <h2 class="blog-index">目录</h2>
 
@@ -120,12 +130,6 @@
                 <dt class="blog-sort">Network</dt>
                 <dd class="blog-name has-trans" data-blog="ethereal.md">Ethereal</dd>
             </dl>
-
-            <!--<ul class="blog-items" id="J_BlogItems">-->
-            <!--<li class="blog-item item-selected has-trans" data-blog="execution_context.md">Execution Context</li>-->
-            <!--<li class="blog-item has-trans" data-blog="diff&patch.md">Diff & Patch</li>-->
-            <!--<li class="blog-item has-trans" data-blog="diff&patch.md">Prototype Chain</li>-->
-            <!--</ul>-->
         </section>
         <script type="text/javascript">
             $(document).ready(function () {
@@ -138,6 +142,7 @@
                     converter = new Markdown.Converter(),
                     baseBlogURL = 'http://' + document.domain + '/blog/',
                     dataCache = {},
+                    loading = $("#J_Loading")[0],
                     blogItems = $("#J_BlogItems dd");
 
                 if (location.hash.slice(1).length == 0)location.hash = 'execution_context.md';
@@ -147,12 +152,15 @@
                         blog.innerHTML = dataCache[blogName].data;
                         return;
                     }
-//                    location.hash = "#" + blogName;
+                    blog.display = "none";
+                    loading.style.display = "block";
                     $.ajax({url:baseBlogURL + blogName,
                         success:function (data) {
                             var html = converter.makeHtml(data);
                             dataCache[blogName] = {data:html};
                             blog.innerHTML = html;
+                            loading.style.display = "none";
+                            blog.style.display = "block";
                         }
                     });
                 }
@@ -162,8 +170,6 @@
                 $('#J_BlogItems').on('click', function (e) {
                     var target = e.target;
                     if (target.tagName.toLowerCase() != "dd")return;
-//                    $("#J_BlogItems").children()[currentIndex].className = "blog-item has-trans";
-//                    target.className += " item-selected";
                     getBlog(target.getAttribute('data-blog'));
                 });
 
