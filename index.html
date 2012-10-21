@@ -2,10 +2,18 @@
 <html>
     <head>
         <meta charset="utf-8"/>
+        <base target="_blank">
         <title>{author:疯癫de小牛仔}</title>
+        <link type="image/x-icon" href="lib/img/jan16.ico" rel="shortcut icon"/>
         <link rel="stylesheet"
               href="http://a.tbcdn.cn/??p/global/1.0/global-min.css,apps/et/common/css/trip-reset-min.css,apps/et/common/css/trip-global-min.css,app/dp/s/html5/css/common-min.css"/>
         <link rel="stylesheet" href="lib/css/github.css"/>
+        <!--[if lt IE 9]>
+        <script src="http://a.tbcdn.cn/app/dp/s/html5/js/??html5shiv-min.js,modernizr-v2.5.3-min.js"></script>
+        <![endif]-->
+        <!--[if gte IE 9]>
+        <script src="http://a.tbcdn.cn/app/dp/s/html5/js/modernizr-v2.5.3-min.js"></script>
+        <!--<![endif]-->
         <script type="text/javascript" src="lib/js/jquery-1.7.2.min.js"></script>
         <script type="text/javascript" src="lib/js/Markdown.Converter-min.js"></script>
         <style type="text/css">
@@ -26,12 +34,14 @@
                 background: #ffffff;
                 text-align: center;
                 line-height: 24px;
+                margin-top: 15px;
+                padding-left: 3px;
                 /*translate*/
-                -webkit-transform: translate(-173px, 0px);
-                -moz-transform: translate(-173px, 0px);
-                -ms-transform: translate(-173px, 0px);
-                -o-transform: translate(-173px, 0px);
-                transform: translate(-173px, 0px);
+                -webkit-transform: translate(-176px, 0px);
+                -moz-transform: translate(-176px, 0px);
+                -ms-transform: translate(-176px, 0px);
+                -o-transform: translate(-176px, 0px);
+                transform: translate(-176px, 0px);
 
                 -webkit-box-shadow: 0px 0px 3px #000000;
                 -moz-box-shadow: 0px 0px 3px #000000;
@@ -64,59 +74,100 @@
             }
 
             .nav .blog-items {
-                width: 175px;
+                width: 170px;
                 float: left;
+                text-align: left;
             }
 
-            .nav .blog-item {
+            .nav .blog-sort {
+                font-size: 14px;
+                font-weight: bold;
+            }
+
+            .nav .blog-name {
+                margin-top: 2px;
                 cursor: pointer;
+                padding-left: 10px;
+                text-align: left;
+                /*css3*/
+                -webkit-border-radius: 3px;
+                -moz-border-radius: 3px;
+                -o-border-radius: 3px;
+                -ms-border-radius: 3px;
+                border-radius: 3px;
+            }
+
+            .nav .item-selected {
+                background: #FB6;
+                font-weight: bold;
             }
 
             .nav .blog-item:hover {
-                background: #f5f5dc;
+                background: #FB6;
             }
+
         </style>
         <section class="nav has-trans">
             <h2 class="blog-index">目录</h2>
-            <ul class="blog-items" id="J_BlogItems">
-                <li class="blog-item has-trans" data-blog="execution_context.md">Execution Context</li>
-                <li class="blog-item has-trans" data-blog="diff&patch.md">Diff & Patch</li>
-                <li class="blog-item has-trans" data-blog="prototype-chain.md">Prototype Chain</li>
-            </ul>
+
+            <dl class="blog-items" id="J_BlogItems">
+                <dt class="blog-sort">JavaScript</dt>
+                <dd class="blog-name has-trans" data-blog="execution_context.md">Execution Context</dd>
+                <dd class="blog-name has-trans" data-blog="diff&patch.md">Diff & Patch</dd>
+                <dd class="blog-name has-trans" data-blog="prototype-chain.md">Prototype Chain</dd>
+                <dt class="blog-sort">Git</dt>
+                <dd class="blog-name has-trans" data-blog="studygit.md">Study Git</dd>
+                <dt class="blog-sort">Network</dt>
+                <dd class="blog-name has-trans" data-blog="ethereal.md">Ethereal</dd>
+            </dl>
+
+            <!--<ul class="blog-items" id="J_BlogItems">-->
+            <!--<li class="blog-item item-selected has-trans" data-blog="execution_context.md">Execution Context</li>-->
+            <!--<li class="blog-item has-trans" data-blog="diff&patch.md">Diff & Patch</li>-->
+            <!--<li class="blog-item has-trans" data-blog="diff&patch.md">Prototype Chain</li>-->
+            <!--</ul>-->
         </section>
         <script type="text/javascript">
             $(document).ready(function () {
+                //预先绑定事件
+                window.onhashchange = function () {
+                    getBlog(location.hash.slice(1));
+                }
+
                 var blog = $('#J_Blog')[0],
                     converter = new Markdown.Converter(),
-                    baseBlogURL = 'http://' + document.domain + '/blog/';
+                    baseBlogURL = 'http://' + document.domain + '/blog/',
+                    dataCache = {},
+                    blogItems = $("#J_BlogItems dd");
+
+                if (location.hash.slice(1).length == 0)location.hash = 'execution_context.md';
 
                 function getBlog(blogName) {
+                    if (blogName in dataCache) {
+                        blog.innerHTML = dataCache[blogName].data;
+                        return;
+                    }
+//                    location.hash = "#" + blogName;
                     $.ajax({url:baseBlogURL + blogName,
                         success:function (data) {
-                            blog.innerHTML = converter.makeHtml(data);
+                            var html = converter.makeHtml(data);
+                            dataCache[blogName] = {data:html};
+                            blog.innerHTML = html;
                         }
                     });
                 }
 
-                window.onhashchange = function () {
-                    var hash = location.hash,
-                        blogName;
-                    if (hash.indexOf('#') < 0) {
-                        blogName = 'execution_context.md';
-                    } else {
-                        blogName = location.hash.slice(1)
-                    }
-                    getBlog(blogName);
-                }
-
-                window.onhashchange();
-
+                var currentIndex = 0;
 
                 $('#J_BlogItems').on('click', function (e) {
                     var target = e.target;
-                    if (target.tagName.toLowerCase() != "li")return;
+                    if (target.tagName.toLowerCase() != "dd")return;
+//                    $("#J_BlogItems").children()[currentIndex].className = "blog-item has-trans";
+//                    target.className += " item-selected";
                     getBlog(target.getAttribute('data-blog'));
                 });
+
+                window.onhashchange();
             });
         </script>
     </body>
