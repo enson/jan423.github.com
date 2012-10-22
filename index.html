@@ -17,7 +17,7 @@
         <script type="text/javascript" src="lib/js/Markdown.Converter-min.js"></script>
         <style type="text/css">
             body {
-                overflow: scroll;
+                overflow-y: scroll;
             }
 
             .content {
@@ -124,10 +124,15 @@
             <h2 class="blog-index">| 目录 |</h2>
 
             <dl class="blog-items" id="J_BlogItems">
+                <dt class="blog-sort">Computer</dt>
+                <dd class="blog-name has-trans" data-blog="encoding.md">Encoding</dd>
                 <dt class="blog-sort">JavaScript</dt>
                 <dd class="blog-name has-trans" data-blog="execution_context.md">Execution Context</dd>
+                <dd class="blog-name has-trans" data-blog="execution_context_test.md">Execution Context Test</dd>
                 <dd class="blog-name has-trans" data-blog="diff&patch.md">Diff & Patch</dd>
                 <dd class="blog-name has-trans" data-blog="prototype-chain.md">Prototype Chain</dd>
+                <dt class="blog-sort">CSS3</dt>
+                <dd class="blog-name has-trans" data-blog="css3-transform-matrix.md">深入理解transform matrix</dd>
                 <dt class="blog-sort">Git</dt>
                 <dd class="blog-name has-trans" data-blog="studygit.md">Study Git</dd>
                 <dt class="blog-sort">Network</dt>
@@ -172,7 +177,7 @@
                 $('#J_BlogItems').on('click', function (e) {
                     var target = e.target;
                     if (target.tagName.toLowerCase() != "dd")return;
-                    getBlog(target.getAttribute('data-blog'));
+                    location.hash = target.getAttribute('data-blog');
                 });
 
                 window.onhashchange();
