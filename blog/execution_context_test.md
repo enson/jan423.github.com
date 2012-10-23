@@ -1,3 +1,5 @@
+#关于Execution Context的一些习题
+
 	alert(typeof(f));//undefined
     alert(typeof(g));//undefined
     var g = function f() {
