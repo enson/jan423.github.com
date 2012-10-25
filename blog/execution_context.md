@@ -9,7 +9,7 @@
 * [深入理解JavaScript系列（13）：This? Yes,this!](http://www.cnblogs.com/TomXu/archive/2012/01/17/2310479.html)
 
 
-代码的执行所处的环境，也叫执行上下文,它确定了代码的作用域，作用域链，this属性，代码的生存期等等，让我们从解释器的角度看代码是如何执行的。
+代码的执行所处的环境，也叫执行上下文,它确定了代码的作用域，作用域链，this属性，代码的生存期等等，让我们从**解释器的角度**看代码是如何执行的。
 EC可以用如下的数据结构表达，它有很多属性，VO,[[scope]],this等等。
 
 	EC={
@@ -335,6 +335,8 @@ this指向这些函数的第一个参数
 
 #### 5.2.3 单独使用()调用函数
 
+执行时this的值取决于()左边的值所属的对象
+
 ##### 5.2.3.1 当生成的函数对象有被引用
 
 如果函数被引用，那么this指向这个引用函数的东东的所属环境，但是函数被函数的VO引用那么this指向null，再而转为global。
@@ -373,6 +375,21 @@ test3
 	k.vo.f=function;
 	f.this=null==>global;
 
+test4
+
+	var foo = {
+	  bar: function () {
+	    alert(this);
+	  }
+	};
+	 
+	foo.bar(); // Reference, OK => foo ()左边的引用类型属于foo，this指向foo
+	(foo.bar)(); // Reference, OK => foo “()”对foo.bar没有任何处理，返回仍是foo.bar。
+	 
+	(foo.bar = foo.bar)(); // global 赋值操作符使返回值是foo.bar所指向的函数。返回的是一个没有东西引用的function
+	(false || foo.bar)(); // global ||同上
+	(foo.bar, foo.bar)(); // global 连续运算符仍是同上
+
 ##### 5.2.3.2 当函数没有被引用
 
 this指向null，但是浏览器不会让你这么干，它会把null变为global。
@@ -383,8 +400,8 @@ this指向null，但是浏览器不会让你这么干，它会把null变为globa
         alert(this);//window
     })();
 
-### 5.3 eval执行环境中的this
 
+### 5.3 eval执行环境中的this
 	eval('alert(this)');//window
 
 ### 5.4 让我们回想下DOM事件
