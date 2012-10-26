@@ -2,6 +2,11 @@
 
 >数学真的是很重要。
 
+参考资料
+
+* [**仿射变换**](http://zh.wikipedia.org/wiki/%E4%BB%BF%E5%B0%84%E5%8F%98%E6%8D%A2)
+* [**blog**(需要翻墙)](http://www.useragentman.com/blog/2011/01/07/css3-matrix-transform-for-the-mathematically-challenged/comment-page-1)
+
 要理解matrix是需要一定的数学矩阵功底的。我们知道调用transform的函数rotate，scale，skew，translate到最后其实都是调用了matrix函数，只是浏览器帮你转化了。
 
 首先我们要知道一个数学矩阵概念：[**仿射变换**](http://zh.wikipedia.org/wiki/%E4%BB%BF%E5%B0%84%E5%8F%98%E6%8D%A2)，就是这个矩阵实现了transform。
@@ -12,7 +17,7 @@
 
 ## 例子
 
-**注意**：一个图形没有transform时其matrix的参数是（1,0,0,1,0,0）。
+**注意**：一个图形没有transform时其matrix的默认参数是（1,0,0,1,0,0），你可以使用调试工具查看。
 
 如果我们有一个图形（width:200px,height:100px），并且设置transform-origin:50% 50%。那么变换前4个坐标（**相对于变形origin**）为
 	

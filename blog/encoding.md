@@ -1,6 +1,8 @@
 # Encode
 
-参考资料[编码大全](http://www.slideshare.net/guestf749d5/ss-3812216)
+参考资料
+
+* [编码大全](http://www.slideshare.net/guestf749d5/ss-3812216)
 
 编码：用预先规定的方法将文字、数字或其他对象编成数码。说白了编码就是一种状态变为另一种状态的规则。
 
@@ -39,7 +41,7 @@ Unicode 联盟开发了 Unicode 标准。用32位描述字符集。但是可能�
 
 ### UTF-8
 
-0x00 到 0x7F和ASCII相同。
+0x00 到 0x7F和ASCII相同。故兼容ASCII编码。
 
 ## Encode@前端
 
