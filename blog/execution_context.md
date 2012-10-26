@@ -429,3 +429,18 @@ this指向null，但是浏览器不会让你这么干，它会把null变为globa
 >其实说这2个方法对理解function的this有点跑偏，但是还是要标记下。
 
 2这不同的是addEventListener绑定事件处理函数后函数的this指向这个节点对象，attachEvent指向window（attachEvent存在于<=IE8）。
+
+## 6 Test
+
+test1 
+
+有时候我们想这样做
+
+	var $=document.getElementById;//引用这个方法
+	$("J_Head");//Illegal invocation 非法调用
+
+为什么会这样呢？因为我们调用getElementById的方式不对。$()执行是getElementById的中的this指向的是window，用document.getElementById方式调用getElementById，其this指向的是document，原因已经说过了。所以...
+
+	$.apply(document,["login-container"]);//指定this指向对象就ok了
+	(1,document.getElementById)();//Illegal invocation,连续运算符将getElementById已经从document中取出，执行时this指向null，进而指向global
+
