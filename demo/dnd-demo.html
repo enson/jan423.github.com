@@ -1,0 +1,122 @@
+<!doctype html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+        <script type="text/javascript" src="../lib/js/jquery-1.7.2.min.js"></script>
+        <title></title>
+    </head>
+    <body>
+        <style type="text/css">
+            .demo-box li {
+                width         : 100px;
+                height        : 100px;
+                border        : 1px solid #000000;
+                border-radius : 5px;
+                float         : left;
+                margin-right  : 10px;
+                background    : rgb(255, 239, 239);
+                text-align    : center;
+                list-style    : none;
+                cursor        : move;
+            }
+
+            .demo-box .over { border : 1px dashed #000000; }
+            .demo-box .draging { opacity : 0.3; }
+        </style>
+        <ul class="demo-box demo-box3" id="J_BoxCtn">
+            <li draggable="true" class="">A</li>
+            <li draggable="true" class="">B</li>
+            <li draggable="true" class="">C</li>
+        </ul>
+        <script>
+            /**
+             *  浏览器支持情况
+             *      chrome 7+,safari 5+,firefox 3.6+,ie6 +(ie6+ 不完全支持，无dataTransfet属性)
+             *
+             *  事件顺序
+             *      dragstart --> drag --> dragenter --> dragover --> dragleave --> drop --> dragend
+             *
+             *  e.dataTransfer
+             *      退拽对象用来传递的媒介
+             *
+             *  draggable
+             *      标签元素要设置draggable=true，否则不会有效果
+             *
+             *  Event.preventDefault()
+             *      阻止默认的些事件方法等执行。在ondragover中一定要执行preventDefault()，否则ondrop事件不会被触发。
+             *      另外，如果是从其他应用软件或是文件中拖东西进来，尤其是图片的时候，默认的动作是显示这个图片或是相关信息，并不是真的执行drop。
+             *      此时需要用用document的ondragover事件把它直接干掉。
+             *
+             *  e.effectAllowed
+             *      拖拽运行类型，默认为all。值：none，copy，copyLink， copyMove,link,linkMove,move，all，uninitialized
+             *
+             *  format
+             *      text/plain, image/jpeg, text/html,text/uri-list
+             *
+             *  e.datatransfer.clearData([format])
+             *      删除指定格式的数据，如果未指定，则删除当前元素所有数据
+             *
+             *  e.datatransfer.types dragstart
+             *      事件出发时为元素存储数据的格式,外部文件的拖曳，则返回 files
+             *
+             *  e.datatransfer.setData(format,data)
+             *      为元素添加指定数据
+             *
+             *  e.datatransfer.getData(format)
+             *      返回指定数据，如果数据不存在，则返回空字符串
+             *
+             *  e.datatransfer.files
+             *      如果是拖曳文件，返回文件列表FileList
+             *
+             *  e.datatransfer.setDragImage(element, x, y)
+             *      制定拖曳元素时跟随鼠标移动的图片，想，y分别为相对鼠标的坐标
+             *
+             *  e.datatransfer.addElement(element)
+             *      添加一起跟随拖曳的元素
+             *
+             *  reference
+             *      http://www.html5rocks.com/en/tutorials/dnd/basics/
+             *
+             *  让jquery支持dataTransfer
+             *      jquery早期并不支持event的dataTransfer。所以要push到 jQuery.event.props.push("dataTransfer");
+             * */
+
+            jQuery.event.props.push("dataTransfer");
+
+            var dnd = {
+                "dragstart" : function (e) {
+                    this.classList.add('draging');
+                    e.dataTransfer.setData('text/html', this.innerHTML);
+                    temp = e.target;
+                },
+                "drag"      : function (e) {
+                },
+                "dragenter" : function (e) {
+                    this.classList.add('over');
+                },
+                "dragover"  : function (e) {
+                    e.preventDefault();
+                },
+                "dragleave" : function (e) {
+                    this.classList.remove('over');
+                },
+                "drop"      : function (e) {
+                    e.stopPropagation();
+                    this.classList.remove('over');
+                    temp.innerHTML = e.target.innerHTML;
+                    this.innerHTML = e.dataTransfer.getData('text/html');
+                },
+                "dragend"   : function (e) {
+                    this.classList.remove('draging');
+                    this.classList.remove('over');
+                }
+            };
+
+            var temp = null;
+
+            for (var i in dnd) {
+                $("#J_BoxCtn").on(i, "li", dnd[i]);
+            }
+        </script>
+    </body>
+</html>
