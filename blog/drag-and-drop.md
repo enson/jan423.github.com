@@ -72,7 +72,7 @@ Event.preventDefault()
 另外，如果是从其他应用软件或是文件中拖东西进来，尤其是图片的时候，默认的动作是显示这个图片或是相关信息，并不是真的执行drop。
 此时需要用用document的ondragover事件把它直接干掉。
 
-###让jquery支持dataTransfer
+## 让jquery支持dataTransfer
 
    jquery早期并不支持event的dataTransfer。所以要push到 jQuery.event.props.push("dataTransfer");
 
