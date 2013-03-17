@@ -20,11 +20,15 @@
 #### 同步 i/o
 
 阻塞后，当 I/O 操作完毕时，操作系统将这个线程的阻塞状态解除，恢复其对CPU的控制权，令其继续执行。
+
+![synchronous](res/img/synchronous.jpg)
 	
 #### 异步 i/o
 
 当线程遇到 I/O 操作时，不会以阻塞的方式等待 I/O 操作的完成或数据的返回，而只是将 I/O 请求发送给操作系统，继续执行下一条语句。当操作
 系统完成 I/O 操作时，以**事件**的形式通知执行 I/O 操作的线程，线程会在特定时候处理这个事件。为了处理异步 I/O，线程必须有**事件循环**，不断地检查有没有未处理的事件，依次予以处理。
+
+![asynchronous](res/img/asynchronous.jpg)
 
 #### 优点和缺点
 
@@ -142,7 +146,7 @@ so 模块只会实例化一次
 * 文档应该在doc目录下。
 * 单元测试应该在test目录下。
 
-**Node.js在没有找到目标文件时，会将当前目录当作一个包来尝试加载**，所以在package.json文件中最重要的一个字段就是main。
+**Node.js在没有找到目标文件时，会将当前目录当作一个包来尝试加载**，所以在package.json文件中最重要的一个字段就是main。如果 package.json 或 main 字段不存在，会尝试寻找 index.js 或 index.node 作为包的接口。
 
 * name。包名，需要在NPM上是唯一的。不能带有空格。
 * description。包简介。通常会显示在一些列表中。
@@ -189,8 +193,22 @@ Node Package Manager
 
 #### npm link命令
 
-链接模块，全局&本地连接。
+使用全局模式安装的包不能直接通过 require 使用，但通过 npm link命令可以打破这一限制。
 
+	Administrator@jan ~/mygit/study_nodejs/node_modules/speak
+
+	$ npm link
+
+	npm WARN package.json speak@0.0.1 No README.md file found!
+	C:\Documents and Settings\Administrator\Application Data\npm\node_modules\speak -> F:\workspace\mygit\study_nodejs\node_modules\speak
+
+这样本地包就映射到全局包里去了。方便本地目录开发。如果这个时候有别的包依赖speak包。则可以在别的包的目录下
+
+	$ npm link speak
+
+即可调用speak包。
+
+	
 
 ## 基于事件的nodejs
 
@@ -222,10 +240,6 @@ Node Package Manager
 	});
 	task.emit('say');
 
-## DEMO
-
-一个简单web server demo
-
 ## debug
 
-使用webstorm调试
+使用webstorm调试，方便、快捷。
