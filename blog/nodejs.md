@@ -210,7 +210,7 @@ Node Package Manager
 
 即可调用speak包。
 
-	
+!(npm-link)[res/img/npm-link.jpg]
 
 ## 基于事件的nodejs
 
