@@ -101,9 +101,6 @@ exports 本质为空对象，我们可以覆盖这个引用
 
 #### 模块加载机制
 
-
-![require step](res/img/require-step.jpg)
-
 require方法接受以下几种参数的传递：
 
 * http、fs、path等，原生模块。
@@ -122,6 +119,9 @@ require方法接受以下几种参数的传递：
 	* 如果加载成功，结束。
 	* 如果加载失败，令current_dir为其父目录。
 	* 重复这一过程，直到遇到根目录，抛出异常，结束。
+
+
+![require step](res/img/require-step.jpg)
 
 
 so 模块只会实例化一次
@@ -210,7 +210,7 @@ Node Package Manager
 
 即可调用speak包。
 
-!(npm-link)[res/img/npm-link.jpg]
+![npm-link](res/img/npm-link.jpg)
 
 ## 基于事件的nodejs
 
