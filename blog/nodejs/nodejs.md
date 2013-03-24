@@ -19,14 +19,14 @@
 
 通常I/O要耗费较长的时间，这时操作系统会剥夺这个线程的 CPU 控制权，使其暂停执行，同时将资源让给其他的工作线程阻塞后，当 I/O 操作完毕时，操作系统将这个线程的阻塞状态解除，恢复其对CPU的控制权，令其继续执行。
 
-![synchronous](res/img/synchronous.jpg)
+![synchronous](/assets/img/synchronous.jpg)
 	
 #### 异步 i/o
 
 当线程遇到 I/O 操作时，不会以阻塞的方式等待 I/O 操作的完成或数据的返回，而只是将 I/O 请求发送给操作系统，继续执行下一条语句。当操作
 系统完成 I/O 操作时，以**事件**的形式通知执行 I/O 操作的线程，线程会在特定时候处理这个事件。为了处理异步 I/O，线程必须有**事件循环**，不断地检查有没有未处理的事件，依次予以处理。
 
-![asynchronous](res/img/asynchronous.jpg)
+![asynchronous](/assets/img/asynchronous.jpg)
 
 #### 优点和缺点
 
@@ -101,9 +101,6 @@ exports 本质为空对象，我们可以覆盖这个引用
 
 #### 模块加载机制
 
-
-![require step](res/img/require-step.jpg)
-
 require方法接受以下几种参数的传递：
 
 * http、fs、path等，原生模块。
@@ -122,6 +119,9 @@ require方法接受以下几种参数的传递：
 	* 如果加载成功，结束。
 	* 如果加载失败，令current_dir为其父目录。
 	* 重复这一过程，直到遇到根目录，抛出异常，结束。
+
+
+![require step](/assets/img/require-step.jpg)
 
 
 so 模块只会实例化一次
@@ -210,7 +210,7 @@ Node Package Manager
 
 即可调用speak包。
 
-	
+![npm-link](res/img/npm-link.jpg)
 
 ## 基于事件的nodejs
 

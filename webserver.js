@@ -3,9 +3,6 @@
 //  一个演示Web服务器
 //------------------------------------------------
 
-//开始服务启动计时器
-console.time('[WebSvr][Start]');
-
 //请求模块
 var libHttp = require('http');    //HTTP协议模块
 var libUrl = require('url');    //URL解析模块
@@ -75,10 +72,10 @@ var funWebSvr = function (req, res) {
     libPath.exists(filePath, function (exists) {
         if (exists) {//文件存在
             //在返回头中写入内容类型
-            res.writeHead(200, {"Content-Type":funGetContentType(filePath)});
+            res.writeHead(200, {"Content-Type": funGetContentType(filePath)});
 
             //创建只读流用于返回
-            var stream = libFs.createReadStream(filePath, {flags:"r"});
+            var stream = libFs.createReadStream(filePath, {flags: "r"});
 
             //指定如果流读取错误,返回404错误
             stream.on("error", function () {
@@ -92,7 +89,7 @@ var funWebSvr = function (req, res) {
         else { //文件不存在
 
             //返回404错误
-            res.writeHead(404, {"Content-Type":"text/html"});
+            res.writeHead(404, {"Content-Type": "text/html"});
             res.end("<h1>404 Not Found</h1>");
         }
     });
@@ -110,11 +107,5 @@ webSvr.on("error", function (error) {
 
 
 //开始侦听8124端口
-webSvr.listen(80, function () {
+webSvr.listen(80);
 
-    //向控制台输出服务启动的信息
-    console.log('[WebSvr][Start] running at http://127.0.0.1:8124/');
-
-    //结束服务启动计时器并输出
-    console.timeEnd('[WebSvr][Start]');
-});

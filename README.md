@@ -1,4 +1,3 @@
 # README
-一些学习笔记在blog文件夹里
 
-作业放在homework里
+小牛仔的blog。记录点点滴滴的生活，工作~

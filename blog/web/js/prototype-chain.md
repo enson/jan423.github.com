@@ -28,9 +28,9 @@
 
 可以说函数对象是对象扩展，相比普通对象函数对象多了一个**逻辑代码**+**prototype**属性。prototype属性指向一个对象，这个对象有一个constructor属性指向函数对象。
 
-![function](http://jan423.github.com/blog/res/img/function.png)
+![function](/assets/img/function.png)
 
-![function](http://jan423.github.com/blog/res/img/object.png)
+![function](/assets/img/object.png)
 
 
 ## 2 new操作符

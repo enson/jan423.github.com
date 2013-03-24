@@ -4,47 +4,53 @@
         <meta charset="utf-8"/>
         <base target="_blank">
         <title>{author:疯癫de小牛仔}</title>
-        <meta name="description" content="web前端学习笔记、计算机知识学习笔记。深入学习、理解javascript，css，html。计算机网络。疯癫de小牛仔的技术、生活blog。"/>
-        <link type="image/x-icon" href="lib/img/jan16.ico" rel="shortcut icon"/>
-        <link rel="stylesheet" href="lib/css/github.css"/>
-        <link rel="stylesheet" href="lib/css/reset&html5.css"/>
+        <meta name="description" content="小牛仔的blog，记录一切"/>
+        <link rel="stylesheet" href="/assets/css/base.css"/>
+        <link rel="stylesheet" href="/assets/css/index.css"/>
         <!--[if lt IE 9]>
         <script src="http://a.tbcdn.cn/app/dp/s/html5/js/??html5shiv-min.js,modernizr-v2.5.3-min.js"></script>
         <![endif]-->
         <!--[if gte IE 9]>
         <script src="http://a.tbcdn.cn/app/dp/s/html5/js/modernizr-v2.5.3-min.js"></script>
         <!--<![endif]-->
-        <script type="text/javascript" src="lib/js/jquery-1.7.2.min.js"></script>
-        <script type="text/javascript" src="lib/js/Markdown.Converter-min.js"></script>
-        <link rel="stylesheet" href="lib/css/index.css"/>
     </head>
-    <a target="_self" href="#"></a>
     <body>
         <div style="" class="epiceditor-preview content">
-            <div id="J_Loading" class="loading"></div>
-            <div id="J_Blog" class="blog-content">
+            <div id="J_Blog" class="blog-content markdown-ctn">
+                <div id="J_Loading" class="loading"></div>
             </div>
         </div>
         <section class="nav has-trans">
             <h2 class="blog-index">| 文章索引 |</h2>
-            <dl class="blog-items" id="J_BlogItems">
-                <dd class="blog-name has-trans" data-blog="index">Index</dd>
-                <dt class="blog-sort">Computer</dt>
-                <dd class="blog-name has-trans" data-blog="encoding">Encoding</dd>
-                <dt class="blog-sort">JavaScript</dt>
-                <dd class="blog-name has-trans" data-blog="execution_context">Execution Context</dd>
-                <dd class="blog-name has-trans" data-blog="execution_context_test">Execution Context Test</dd>
-                <dd class="blog-name has-trans" data-blog="prototype-chain">Prototype Chain</dd>
-                <dt class="blog-sort">CSS3</dt>
-                <dd class="blog-name has-trans" data-blog="css3-transform-matrix">深入理解transform matrix</dd>
-                <dt class="blog-sort">Git</dt>
-                <dd class="blog-name has-trans" data-blog="git">Git</dd>
-                <dd class="blog-name has-trans" data-blog="diff&patch">Diff & Patch</dd>
-                <dt class="blog-sort">Network</dt>
-                <dd class="blog-name has-trans" data-blog="ethereal">Ethereal</dd>
-                <dd class="blog-name has-trans" data-blog="network">TCP/IP & Ethernet</dd>
-            </dl>
+            <section class="nav-ctn" id="J_NavCtn">
+            </section>
         </section>
-        <script type="text/javascript" src="lib/js/index.js"></script>
+        <!--导航模板-->
+        <script type="text/juicerTmpl" id="J_NavTmpl">
+            {@each data as nav}
+            {@if nav.type == "file"}
+            <a href="javascript:;" target="_self" data-path="${nav.path}" title="${nav.name|filterBlogName}" class="J_BlogLink">
+                ${nav.name|filterBlogName}
+            </a>
+            {@else}
+            <dl class="blog-items">
+                <dt class="blog-sort J_BlogSort" title="${nav.name}">
+                    <i class="arrow"></i>
+                    ${nav.name}&nbsp;&nbsp;(${nav.data.length})
+                </dt>
+                {@each nav.data as item}
+                <dd class="blog-name has-trans" data-blog="network">
+                    $${item|recursive}
+                </dd>
+                {@/each}
+            </dl>
+            {@/if}
+            {@/each}
+        </script>
+        <script type="text/javascript" src="/assets/js/jquery-1.7.2.min.js"></script>
+        <script type="text/javascript" src="/assets/js/Markdown.Converter-min.js"></script>
+        <script type="text/javascript" src="/assets/js/juicer-min.js"></script>
+        <script type="text/javascript" src="/assets/js/blog-index.js"></script>
+        <script type="text/javascript" src="/assets/js/index.js"></script>
     </body>
 </html>
