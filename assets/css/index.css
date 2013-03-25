@@ -10,15 +10,17 @@ body { overflow-y : scroll; background-image : url(/assets/img/bg-image.jpg); }
     right                 : 0px;
     top                   : 0px;
     width                 : 300px;
-    height                : 90%;
+    padding-top           : 10px;
+    padding-bottom        : 10px;
     background            : #F8F8F8;
     text-align            : center;
     line-height           : 24px;
     margin-top            : 15px;
     padding-left          : 3px;
+    height                : 400px;
+    overflow              : auto;
     opacity               : 0.5;
     border                : 1px solid gray;
-    overflow-y            : scroll;
 
     /*translate*/
     -webkit-transform     : translate(276px, 0px); -moz-transform : translate(276px, 0px); -ms-transform : translate(276px, 0px); -o-transform : translate(276px, 0px); transform : translate(276px, 0px);
@@ -80,11 +82,3 @@ body { overflow-y : scroll; background-image : url(/assets/img/bg-image.jpg); }
 .blog-content {
     margin-bottom : 20px;
 }
-
-/*滚动条样式*/
-
-::-webkit-scrollbar { width : 10px; }
-
-::-webkit-scrollbar-thumb { border-radius : 5px; background : rgba(128, 128, 128, 0.298039); -webkit-box-shadow : rgba(0, 0, 0, 0.701961) 0px 0px 6px inset; }
-
-::-webkit-scrollbar-track { -webkit-box-shadow : rgba(0, 0, 0, 0.498039) 0px 0px 6px inset; border-radius : 5px; }

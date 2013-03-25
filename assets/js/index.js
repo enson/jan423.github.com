@@ -53,6 +53,10 @@ $(function () {
     });
 
     function getFile (path) {
+        if (path.length == 0) {
+            path = "/blog/首页.md";
+        }
+
         if (cached[path]) {
             blogCtn.html(cached[path]);
             requesting = false;

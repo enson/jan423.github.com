@@ -19,9 +19,9 @@ function walk (path, data, relativePath) {
             walk(path + '/' + item, data.data[data.data.length - 1], relativePath + "/" + encodeURIComponent(item));
 
         } else {
-            var file = {"name" : item, "path" : relativePath + "/" + encodeURIComponent(item), "type" : "file"};
+            var _file = {"name" : item, "path" : relativePath + "/" + encodeURIComponent(item), "type" : "file"};
 
-            data.data.push(file);
+            data.data.unshift(_file);
         }
     });
 }

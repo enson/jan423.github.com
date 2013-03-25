@@ -49,9 +49,6 @@ var funGetContentType = function (filePath) {
 var funWebSvr = function (req, res) {
     var reqUrl = req.url; //获取请求的url
 
-    //向控制台输出请求的路径
-    console.log(reqUrl);
-
     //使用url解析模块获取url中的路径名
     var pathName = libUrl.parse(reqUrl).pathname;
 
@@ -66,16 +63,16 @@ var funWebSvr = function (req, res) {
     }
 
     //使用路径解析模块,组装实际文件路径
-    var filePath = libPath.join("." + pathName);
+    var filePath = decodeURIComponent(libPath.join("." + pathName));
 
     //判断文件是否存在
     libPath.exists(filePath, function (exists) {
         if (exists) {//文件存在
             //在返回头中写入内容类型
-            res.writeHead(200, {"Content-Type": funGetContentType(filePath)});
+            res.writeHead(200, {"Content-Type" : funGetContentType(filePath)});
 
             //创建只读流用于返回
-            var stream = libFs.createReadStream(filePath, {flags: "r"});
+            var stream = libFs.createReadStream(filePath, {flags : "r"});
 
             //指定如果流读取错误,返回404错误
             stream.on("error", function () {
@@ -89,11 +86,10 @@ var funWebSvr = function (req, res) {
         else { //文件不存在
 
             //返回404错误
-            res.writeHead(404, {"Content-Type": "text/html"});
+            res.writeHead(404, {"Content-Type" : "text/html"});
             res.end("<h1>404 Not Found</h1>");
         }
     });
-
 
 }
 
@@ -104,7 +100,6 @@ var webSvr = libHttp.createServer(funWebSvr);
 webSvr.on("error", function (error) {
     console.log(error);  //在控制台中输出错误信息
 });
-
 
 //开始侦听8124端口
 webSvr.listen(80);
