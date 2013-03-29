@@ -32,9 +32,11 @@ body { overflow-y : scroll; background-image : url(/assets/img/bg-image.jpg); }
     -webkit-transform : translate(0px, 0px); -moz-transform : translate(0px, 0px); -ms-transform : translate(0px, 0px); -o-transform : translate(0px, 0px); transform : translate(0px, 0px);
 }
 
-.nav a { text-decoration : none; display : block; text-align : left; }
+.nav a { text-decoration : none; display : block; text-align : left; color : gray; }
 
 .nav a:hover { text-decoration : underline; }
+
+.nav a em { color : blue; }
 
 .nav .nav-ctn { float : left; margin-left : 10px; }
 
@@ -48,7 +50,6 @@ body { overflow-y : scroll; background-image : url(/assets/img/bg-image.jpg); }
 }
 
 .nav .blog-items {
-    width      : 170px;
     text-align : left;
 }
 

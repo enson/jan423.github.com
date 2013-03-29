@@ -17,7 +17,7 @@
     <body>
         <div style="" class="epiceditor-preview content">
             <div id="J_Blog" class="blog-content markdown-ctn">
-                <div id="J_Loading" class="loading"></div>
+                <div class="loading"></div>
             </div>
         </div>
         <section class="nav has-trans">
@@ -29,8 +29,9 @@
         <script type="text/juicerTmpl" id="J_NavTmpl">
             {@each data as nav}
             {@if nav.type == "file"}
-            <a href="javascript:;" target="_self" data-path="${nav.path}" title="${nav.name|filterBlogName}" class="J_BlogLink">
-                ${nav.name|filterBlogName}
+            <a href="javascript:;" target="_self" data-path="${nav.path}" title="${nav.name}" class="J_BlogLink">
+                <em>${nav.name}</em>
+                &nbsp;&nbsp;(${nav.createDate})
             </a>
             {@else}
             <dl class="blog-items">

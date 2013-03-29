@@ -19,7 +19,17 @@ function walk (path, data, relativePath) {
             walk(path + '/' + item, data.data[data.data.length - 1], relativePath + "/" + encodeURIComponent(item));
 
         } else {
-            var _file = {"name" : item, "path" : relativePath + "/" + encodeURIComponent(item), "type" : "file"};
+            var _fileInfo = item.split("__");
+            var _fileName = _fileInfo[0];
+            var _createDate = _fileInfo[1].split(".")[0];
+            var _extension = _fileInfo[1].replace(_createDate, "").slice(1);
+            var _file = {
+                "name"       : _fileName,
+                "path"       : relativePath + "/" + encodeURIComponent(item),
+                "type"       : "file",
+                "createDate" : _createDate,
+                "extension"  : _extension
+            };
 
             data.data.unshift(_file);
         }

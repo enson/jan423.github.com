@@ -1,7 +1,8 @@
 $(function () {
 
     var tmpls = {
-        navTmpl : $("#J_NavTmpl").html()
+        navTmpl     : $("#J_NavTmpl").html(),
+        loadingTmpl : '<div class="loading"></div>'
     };
     var datas = {
         blogIndex : blogIndex
@@ -11,17 +12,11 @@ $(function () {
     var blogCtn = $("#J_Blog");
     var cached = {};
 
-    //filter blogname
-    function filterBlogName (data) {
-        return data.slice(0, -3);
-    }
-
     //recursive
     function recursive (data) {
         return juicer(tmpls.navTmpl, {data : [data]});
     }
 
-    juicer.register("filterBlogName", filterBlogName);
     juicer.register("recursive", recursive);
 
     function renderNav () {
@@ -54,7 +49,7 @@ $(function () {
 
     function getFile (path) {
         if (path.length == 0) {
-            path = "/blog/首页.md";
+            path = "/blog/首页__2013-01-01.md";
         }
 
         if (cached[path]) {
@@ -63,6 +58,7 @@ $(function () {
             return;
         }
 
+        blogCtn.html(tmpls.loadingTmpl);
         $.ajax({url : decodeURIComponent(path)}).done(function (content) {
             var content = converter.makeHtml(content);
             blogCtn.html(content);
