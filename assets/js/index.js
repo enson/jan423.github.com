@@ -48,9 +48,6 @@ $(function () {
     });
 
     function getFile (path) {
-        if (path.length == 0) {
-            path = "/blog/首页__2013-01-01.md";
-        }
 
         if (cached[path]) {
             blogCtn.html(cached[path]);
@@ -71,4 +68,5 @@ $(function () {
     }
 
     getFile(location.hash.slice(1));
+
 });

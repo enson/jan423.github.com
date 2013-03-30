@@ -12,11 +12,14 @@ function walk (path, data, relativePath) {
     var dirList = fs.readdirSync(path);
 
     dirList.forEach(function (item) {
+        var _data = data.data;
+
         if (fs.statSync(path + '/' + item).isDirectory()) {
             var _dir = {"name" : item, data : [], "type" : "dir"};
 
-            data.data.push(_dir);
-            walk(path + '/' + item, data.data[data.data.length - 1], relativePath + "/" + encodeURIComponent(item));
+            _data.push(_dir);
+
+            walk(path + '/' + item, _data[_data.length - 1], relativePath + "/" + encodeURIComponent(item));
 
         } else {
             var _fileInfo = item.split("__");
@@ -31,7 +34,27 @@ function walk (path, data, relativePath) {
                 "extension"  : _extension
             };
 
-            data.data.unshift(_file);
+            if (_data.length == 0) {
+                _data.unshift(_file);
+            } else {
+                //排序
+                var dirCount = 0;
+                for (var i = 0, l = _data.length; i < l; i++) {
+                    var item = _data[i];
+
+                    if (item.createDate && new Date(item.createDate).getTime() <= new Date(_file.createDate).getTime()) {
+                        _data.splice(i, 0, _file);
+                        break;
+                    }
+
+                    dirCount++;
+
+                    if (l == dirCount) {
+                        _data.unshift(_file);
+                    }
+                }
+            }
+
         }
     });
 }
