@@ -11,6 +11,7 @@ $(function () {
     var converter = new Markdown.Converter();
     var blogCtn = $("#J_Blog");
     var cached = {};
+    var indexLocation = "/blog/首页__2013-01-01.md";
 
     //recursive
     function recursive (data) {
@@ -48,6 +49,9 @@ $(function () {
     });
 
     function getFile (path) {
+        if (path.length == 0) {
+            path = indexLocation;
+        }
 
         if (cached[path]) {
             blogCtn.html(cached[path]);
