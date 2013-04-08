@@ -63,7 +63,7 @@ var funWebSvr = function (req, res) {
     }
 
     //使用路径解析模块,组装实际文件路径
-    var filePath = decodeURIComponent(libPath.join("." + pathName));
+    var filePath = decodeURIComponent(libPath.join(__dirname+ pathName));
 
     //判断文件是否存在
     libPath.exists(filePath, function (exists) {
