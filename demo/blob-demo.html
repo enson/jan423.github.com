@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+        <script type="text/javascript" src="../assets/js/jquery-1.7.2.min.js"></script>
+        <title>文件读取Demo</title>
+    </head>
+    <body>
+        <style type="text/css">
+            .box {
+                width         : 100px;
+                height        : 100px;
+                border        : 1px solid #000000;
+                border-radius : 5px;
+                margin-right  : 10px;
+                background    : rgb(255, 239, 239);
+                text-align    : center;
+                list-style    : none;
+            }
+
+            .over { border : 1px dashed #000000; opacity : 0.3; }
+
+            .draging { opacity : 0.3; }
+        </style>
+        <div>
+            <div class="box" id="J_Box1">将文件拖入</div>
+            <p></p>
+        </div>
+        <script>
+            jQuery.event.props.push("dataTransfer");
+
+            $("#J_Box1").on("dragover", function (e) {
+                e.preventDefault();
+            });
+
+            $("#J_Box1").on("drop", function (e) {
+                e.preventDefault();
+                this.classList.remove('over');
+                var files = e.dataTransfer.files;
+                var blobURL = "";
+                var msg = ""
+
+                for (var i = 0, l = files.length; i < l; i++) {
+                    var file = files[i];
+                    var fileType = file.type;
+
+                    msg += "<hr/>文件的属性<br/>";
+
+                    for (var ii in file) {
+                        msg += ii + " : " + file[ii] + "<br/>";
+                    }
+
+                    blobURL = webkitURL.createObjectURL(file);
+                    msg += "指向file的URL : " + blobURL;
+
+                    //如果是图片则显示
+                    if (fileType.substring(0, 6) == "image/") {
+                        var image = new Image();
+
+                        image.src = blobURL;
+
+                        msg += "<br/>图片预览：<br/>";
+                        msg += image.outerHTML;
+                    }
+
+                    //如果是存文本则显示内容
+                    if (fileType.substring(0, 4) == "text") {
+                        var reader = new FileReader();
+
+                        reader.onload = function () {
+                            var content = reader.result;
+
+                            //异步在console打印出信息;
+                            console.info(content);
+                        }
+
+                        reader.readAsText(file);
+                    }
+
+                }
+
+                $(this).next().html(msg);
+            });
+
+            $(document).on("dragover", function (e) {
+                e.preventDefault();
+            });
+
+            $(document).on("drop", function (e) {
+                e.preventDefault();
+            });
+        </script>
+    </body>
+</html>

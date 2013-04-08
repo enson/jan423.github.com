@@ -24,7 +24,11 @@ function walk (path, data, relativePath) {
         } else {
             var _fileInfo = item.split("__");
             var _fileName = _fileInfo[0];
-            var _createDate = _fileInfo[1].split(".")[0];
+            try {
+                var _createDate = _fileInfo[1].split(".")[0];
+            } catch (e) {
+                debugger;
+            }
             var _extension = _fileInfo[1].replace(_createDate, "").slice(1);
             var _file = {
                 "name"       : _fileName,
