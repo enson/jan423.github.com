@@ -28,11 +28,14 @@ $(function () {
         if (uri.length > 0) {
 
             if (cache[uri] != undefined) {
-                requestSuccess(cache[uri]);
+
+                renderBlog(cache[uri]);
+            } else {
+
+                blogCtn.html(tmpls.loading);
+                getResource(uri);
             }
 
-            blogCtn.html(tmpls.loading);
-            getResource(uri);
         }
 
         return hashChangeHandler;
