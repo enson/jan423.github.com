@@ -9,9 +9,8 @@ body {
     background-color : rgba(0, 0, 0, 0.2);
 
     .container {
-        padding-top    : 5px;
-        padding-bottom : 5px;
-        height         : 25px;
+        padding : 5px;
+        height  : 25px;
 
         .head-img {
             width  : 25px;
@@ -24,10 +23,19 @@ body {
     }
 }
 /*content*/
-.blog-content {
+body .container {
+    padding-left  : 5px;
+    padding-right : 5px;
 }
 
 /*nav*/
+.row-fluid {
+
+    .blog-nav-ctn {
+        float : right;
+    }
+}
+
 .blog-nav {
 
     .blog-list-header {
@@ -60,4 +68,13 @@ body {
 .loading {
     background : url("../img/loading.gif") no-repeat center center;
     height     : 50px;
+}
+
+/*media queries*/
+@media (max-width: 360px) {
+
+    .row-fluid>.span3,
+    .row-fluid>.span9 {
+        float : none;
+    }
 }

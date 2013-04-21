@@ -5,15 +5,11 @@
         <base target="_blank">
         <title>{author:疯癫de小牛仔}</title>
         <meta name="description" content="小牛仔的blog，记录一切"/>
-        <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap-responsive.min.css"/>
         <link rel="stylesheet" href="/assets/css/markdown.css"/>
         <link rel="stylesheet" href="/assets/css/index.css"/>
-        <!--[if lt IE 9]>
-        <script src="http://a.tbcdn.cn/app/dp/s/html5/js/??html5shiv-min.js,modernizr-v2.5.3-min.js"></script>
-        <![endif]-->
-        <!--[if gte IE 9]>
-        <script src="http://a.tbcdn.cn/app/dp/s/html5/js/modernizr-v2.5.3-min.js"></script>
-        <!--<![endif]-->
     </head>
     <body>
         <header class="header">
@@ -25,13 +21,8 @@
             </section>
         </header>
         <section class="container">
-            <section class="row">
-                <section class="span9">
-                    <div id="J_Blog" class="blog-content markdown-ctn">
-                        <div class="loading"></div>
-                    </div>
-                </section>
-                <section class="span3">
+            <section class="row-fluid">
+                <section class="span3 blog-nav-ctn">
                     <section class="blog-nav">
                         <h3 class="blog-list-header">Blog列表</h3>
                         <div id="J_NavCtn">
@@ -47,6 +38,11 @@
                             </li>
                         </ul>
                     </section>
+                </section>
+                <section class="span9">
+                    <div id="J_Blog" class="blog-content markdown-ctn">
+                        <div class="loading"></div>
+                    </div>
                 </section>
             </section>
         </section>
