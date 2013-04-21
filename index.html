@@ -5,7 +5,8 @@
         <base target="_blank">
         <title>{author:疯癫de小牛仔}</title>
         <meta name="description" content="小牛仔的blog，记录一切"/>
-        <link rel="stylesheet" href="/assets/css/base.css"/>
+        <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="/assets/css/markdown.css"/>
         <link rel="stylesheet" href="/assets/css/index.css"/>
         <!--[if lt IE 9]>
         <script src="http://a.tbcdn.cn/app/dp/s/html5/js/??html5shiv-min.js,modernizr-v2.5.3-min.js"></script>
@@ -15,40 +16,58 @@
         <!--<![endif]-->
     </head>
     <body>
-        <div style="" class="epiceditor-preview content">
-            <div id="J_Blog" class="blog-content markdown-ctn">
-                <div class="loading"></div>
-            </div>
-        </div>
-        <section class="nav has-trans">
-            <h2 class="blog-index">| 文章索引 |</h2>
-            <section class="nav-ctn" id="J_NavCtn">
+        <header class="header">
+            <section class="container">
+                <img class="head-img" src="./assets/img/head-img.jpg" alt="小牛仔" title="疯癫de小牛仔"/>
+                <span class="blog-description">
+                    <a href="http://weibo.com/1799661370/profile?rightmod=1&wvr=5&mod=personinfo" target="_blank" title="疯癫de小牛仔 微博"><b>疯癫de小牛仔</b></a>的blog 记录自己生活点点滴滴
+                </span>
+            </section>
+        </header>
+        <section class="container">
+            <section class="row">
+                <section class="span9">
+                    <div id="J_Blog" class="blog-content markdown-ctn">
+                        <div class="loading"></div>
+                    </div>
+                </section>
+                <section class="span3">
+                    <section class="blog-nav">
+                        <h3 class="blog-list-header">Blog列表</h3>
+                        <div id="J_NavCtn">
+                            <div class="loading"></div>
+                        </div>
+                        <h3 class="blog-list-header">Demos</h3>
+                        <ul>
+                            <li>
+                                <a href="/demo/blob-demo.html" target="_blank">HTML5 文件读取</a>
+                            </li>
+                            <li>
+                                <a href="/demo/dnd-demo.html" target="_blank">文件拖拽</a>
+                            </li>
+                        </ul>
+                    </section>
+                </section>
             </section>
         </section>
-        <!--导航模板-->
-        <script type="text/juicerTmpl" id="J_NavTmpl">
-            {@each data as nav}
-            {@if nav.type == "file"}
-            <a href="javascript:;" target="_self" data-path="${nav.path}" title="${nav.name}" class="J_BlogLink">
-                <em>${nav.name}</em>
-                &nbsp;&nbsp;(${nav.createDate})
-            </a>
-            {@else}
-            <dl class="blog-items">
-                <dt class="blog-sort J_BlogSort" title="${nav.name}">
-                    <i class="arrow"></i>
-                    ${nav.name}&nbsp;&nbsp;(${nav.data.length})
-                </dt>
-                {@each nav.data as item}
-                <dd class="blog-name has-trans" data-blog="network">
-                    $${item|recursive}
-                </dd>
+        <script type="text/template" id="J_BlogNavTmpl">
+            <ul>
+                {@each _ as nav}
+                <li class="${nav.type}">
+                    {@if nav.type == "dir"}
+                    <a href="javascript:;" target="_self" class="J_Dir">
+                        <i class="icon-plus"></i>
+                        &nbsp;${nav.name}
+                    </a>
+                    {@else}
+                    <a href="#!${nav.path}" target="_self">${nav.name}&nbsp;(${nav.createDate})</a>
+                    {@/if}
+                    $${nav.data|recursive}
+                </li>
                 {@/each}
-            </dl>
-            {@/if}
-            {@/each}
+            </ul>
         </script>
-        <script type="text/javascript" src="/assets/js/jquery-1.7.2.min.js"></script>
+        <script type="text/javascript" src="/assets/zepto/zepto.min.js"></script>
         <script type="text/javascript" src="/assets/js/Markdown.Converter-min.js"></script>
         <script type="text/javascript" src="/assets/js/juicer-min.js"></script>
         <script type="text/javascript" src="/assets/js/blog-index.js"></script>

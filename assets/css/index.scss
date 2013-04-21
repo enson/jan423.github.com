@@ -1,0 +1,63 @@
+body {
+    background     : url("../img/bg.jpg") repeat;
+    overflow-y     : scroll;
+    padding-bottom : 20px;
+}
+
+/*header*/
+.header {
+    background-color : rgba(0, 0, 0, 0.2);
+
+    .container {
+        padding-top    : 5px;
+        padding-bottom : 5px;
+        height         : 25px;
+
+        .head-img {
+            width  : 25px;
+            height : 25px;
+        }
+
+        .blog-description {
+            margin-left : 10px;
+        }
+    }
+}
+/*content*/
+.blog-content {
+}
+
+/*nav*/
+.blog-nav {
+
+    .blog-list-header {
+        font-size   : 18px;
+        font-weight : bold;
+    }
+
+    .blog-type {
+        font-size   : 14px;
+        font-weight : bold;
+    }
+
+    .blog-sort { cursor : pointer; }
+
+    .dir>ul {
+        margin-left : 20px;
+        display     : none;
+    }
+
+    .dir>ul.show {
+        display : block;
+    }
+
+    .loading {
+        background-position : left center;
+    }
+}
+
+/*common*/
+.loading {
+    background : url("../img/loading.gif") no-repeat center center;
+    height     : 50px;
+}
