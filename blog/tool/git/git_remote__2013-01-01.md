@@ -46,9 +46,44 @@
 
 branch j 已经有一个remote配置，指向名字为origin的远程库
 
+
 ## push & pull
 
 当我们在主干或者一个分支上执行pull或者push操作时会发生什么？
+
+当在本地创建了一个**基于本地的新分支**，使用git push、git pull，不会关联到远程分支。
+
+	$ git ch -b j
+	Switched to a new branch 'j'
+
+
+	$ git pl
+	You asked me to pull without telling me which branch you
+	want to merge with, and 'branch.j.merge' in
+	your configuration file does not tell me, either. Please
+	specify which branch you want to use on the command line and
+	try again (e.g. 'git pull <repository> <refspec>').
+	See git-pull(1) for details.
+	
+	If you often merge with the same branch, you may want to
+	use something like the following in your configuration file:
+    [branch "j"]
+    remote = <nickname>
+    merge = <remote-ref>
+
+    [remote "<nickname>"]
+    url = <url>
+    fetch = <refspec>
+
+	See git-config(1) for details.
+
+
+但是可以使用track命令和远程关联
+
+	$ git checkout --track -b j
+
+	Branch j set up to track local branch master.
+	Switched to a new branch 'j'
 
 ### push
 
@@ -58,5 +93,3 @@ branch j 已经有一个remote配置，指向名字为origin的远程库
 ### pull
 
 过程和push相似
-
-so，当在本地创建了一个新的分支，使用git push活git pull，并不会push到远程库，若远程库有相同名的分支，则会关联。
