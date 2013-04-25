@@ -63,7 +63,7 @@ Object是所有对象直接或者间接构造器，Function是所有函数的直
     Object instanceof Function;
     Object instanceof Object;
 
-![prototype chain](http://jan423.github.com/blog/res/img/prototype.jpg)
+![prototype chain](/assets/img/prototype.jpg)
 
 ## 6 TEST
 

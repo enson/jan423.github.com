@@ -10,8 +10,6 @@ body { background: url("../img/bg.jpg") repeat; overflow-y: scroll; padding-bott
 body .container { padding-left: 5px; padding-right: 5px; }
 
 /*nav*/
-.row-fluid .blog-nav-ctn { float: right; }
-
 .blog-nav .blog-list-header { font-size: 18px; font-weight: bold; }
 .blog-nav .blog-type { font-size: 14px; font-weight: bold; }
 .blog-nav .blog-sort { cursor: pointer; }
@@ -24,3 +22,11 @@ body .container { padding-left: 5px; padding-right: 5px; }
 
 /*media queries*/
 @media (max-width: 360px) { .row-fluid > .span3, .row-fluid > .span9 { float: none; } }
+/*extend markdown css*/
+.markdown-ctn { line-height: 1.5; }
+.markdown-ctn h1 { font-size: 32px; }
+.markdown-ctn h2 { font-size: 28px; }
+.markdown-ctn h3 { font-size: 20px; }
+.markdown-ctn h4 { font-size: 18px; }
+.markdown-ctn p, .markdown-ctn blockquote, .markdown-ctn ul, .markdown-ctn ol, .markdown-ctn dl, .markdown-ctn li, .markdown-ctn table, .markdown-ctn pre { font-size: 16px; }
+.markdown-ctn .highlight pre, .markdown-ctn pre { background-color: #fff; color: #424242; font-size: 14px; }

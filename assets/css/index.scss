@@ -29,13 +29,6 @@ body .container {
 }
 
 /*nav*/
-.row-fluid {
-
-    .blog-nav-ctn {
-        float : right;
-    }
-}
-
 .blog-nav {
 
     .blog-list-header {
@@ -76,5 +69,21 @@ body .container {
     .row-fluid>.span3,
     .row-fluid>.span9 {
         float : none;
+    }
+}
+/*extend markdown css*/
+.markdown-ctn {
+    line-height : 1.5;
+
+    h1 { font-size : 32px; }
+    h2 { font-size : 28px; }
+    h3 { font-size : 20px; }
+    h4 { font-size : 18px; }
+    p, blockquote, ul, ol, dl, li, table, pre { font-size : 16px; }
+
+    .highlight pre, pre {
+        background-color : #fff;
+        color            : rgb(66, 66, 66);
+        font-size        : 14px;
     }
 }
