@@ -146,3 +146,39 @@ reflog用来显示commit的历史，对应的文件位置在.git/logs文件夹�
 	git reflog jan
 	
 	git reset --hard master@{3}
+
+
+### 跨平台
+
+#### 关闭Git对0×80以上的字符进行quote
+
+    git config --global core.quotepath false
+
+#### 关闭Git的大小写敏感
+    
+针对 *NIX，window平台对大小写敏感
+
+    git config --global core.ignorecase true
+
+#### CRLF，CR ，LF
+
+关闭自动转换CRLF和LF的功能，是怎么样就是怎么样提交到版本库
+
+    git config --global core.autocrlf false
+
+开启自动转换：版本库的LF将自动转为CRLF，提交时eol转换为LF
+
+    git config --global core.autocrlf true
+
+加入版本库全转换为LF，检出也转为LF
+
+    git config --global core.autocrlf input
+
+so...
+
+**windows 平台设置为 true，*nix设置为input**
+
+添加LF和CRLF非可逆转的转换warming
+
+    git config --global core.safecrlf true //发现后直接拒绝提交
+    git config --global core.safecrlf warn //发现后只warn，不阻止
