@@ -16,9 +16,9 @@
 
 ### 配置的作用域
 
-	git config  xxxx
-	git config --global xxxx
-	git config --system xxxx
+	git config  xxxx	.git/config 文件
+	git config --global xxxx ~/.gitconfig 文件
+	git config --system xxxx // /etc/gitconfig 文件
 
 三个option（null，global，system）分别对应于版本库，用户级别，系统级别。
 
@@ -44,14 +44,27 @@
 	git conf alias.pl "pull"
 	git conf alias.ps "push"
 
+### 查看已配置的信息
+
+	git config --list
+
 
 ## concept
+
+### gitignore
+
+让git忽略文件或者目录，gitignore文件的语法如下：
+
+* 所有空行或者以注释符号 ＃ 开头的行都会被 Git 忽略。
+* 可以使用标准的 glob 模式匹配。
+* 匹配模式最后跟反斜杠（/）说明要忽略的是目录。
+* 要忽略指定模式以外的文件或目录，可以在模式前加上惊叹号（!）取反。
 
 ### 信息摘要
 
 一个算法，可以将任意长度的信息转换为固定长度输出，并且对不同信息的摘要唯一。目前比较著名的实现算法有MD5与SHA1。当然转换后的信息重复的概率很小。
 
-在git中摘要是对commit，blob和tree进行SHA1,用以比对。
+在git中摘要是对commit，blob和tree进行SHA-1,用以比对是否产生文件差异。
 
 ### 裸版本库
 
