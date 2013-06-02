@@ -6,10 +6,7 @@
         <title>{author:疯癫de小牛仔}</title>
         <meta name="description" content="小牛仔的blog，记录一切"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css"/>
-        <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap-responsive.min.css"/>
-        <link rel="stylesheet" href="/assets/css/markdown.css"/>
-        <link rel="stylesheet" href="/assets/css/index.css"/>
+        <script type="text/javascript" src="/assets/seajs/sea.js" data-config="./assets/js/blog-config" data-main="./assets/js/index"></script>
     </head>
     <body>
         <header class="header">
@@ -46,6 +43,7 @@
                 </section>
             </section>
         </section>
+        <!--右侧导航模板 {{-->
         <script type="text/template" id="J_BlogNavTmpl">
             <ul>
                 {@each _ as nav}
@@ -63,10 +61,6 @@
                 {@/each}
             </ul>
         </script>
-        <script type="text/javascript" src="/assets/zepto/zepto.min.js"></script>
-        <script type="text/javascript" src="/assets/js/Markdown.Converter-min.js"></script>
-        <script type="text/javascript" src="/assets/js/juicer-min.js"></script>
-        <script type="text/javascript" src="/assets/js/blog-index.js"></script>
-        <script type="text/javascript" src="/assets/js/index.js"></script>
+        <!--}} 右侧导航模板-->
     </body>
 </html>

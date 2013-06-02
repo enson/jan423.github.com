@@ -1,4 +1,4 @@
-$(function () {
+define(function () {
 
     var tmpls = {
         nav      : $("#J_BlogNavTmpl").html(),
