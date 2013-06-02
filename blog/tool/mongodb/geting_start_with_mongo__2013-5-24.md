@@ -24,6 +24,17 @@ http://localhost:28017/ 为db的信息、管理web页面
     use admin
     db.shutdownServer()
 
+### 非正常关闭mongodb，导致无法启动
+
+1. 删除 /data/db/mongod.locks文件
+2. 使用repair 选项修复mongodb
+
+		./mongod --repair
+ 
+3. 重启启动mongodb
+
+		./mongod
+
 ##	??
 
 ### _id
