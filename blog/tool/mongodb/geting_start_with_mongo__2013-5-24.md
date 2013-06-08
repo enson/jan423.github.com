@@ -17,6 +17,12 @@ http://localhost:28017/ 为db的信息、管理web页面
 	--auth 使用权限
 	--repair 通过repaire选项恢复数据库
 
+demo
+	
+	mongod --port 22222 --directoryperdb --dbpath /data/db
+
+开启22222端口服务，并且设置每一个db单独一个文件夹，指定db所在的文件夹
+
 ### 终端访问
 
 运行 mongo 文件，可以打开一个控制台控制DB
